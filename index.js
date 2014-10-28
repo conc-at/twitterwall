@@ -35,6 +35,7 @@ hashStream.on('tweet', function(tweet) {
 })
 
 app.use(express.static(path.join(__dirname, 'static')))
+app.use(express.static(path.join(__dirname, 'build')))
 
 app.get('/tweets', function(req, res) {
   T.get('search/tweets', {
