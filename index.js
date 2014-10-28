@@ -22,7 +22,15 @@ var T = new Twit({
 app.use(express.static(path.join(__dirname, 'static')))
 
 app.get('/tweets', function(req, res) {
-  res.send('hello world')
+  T.get('search/tweets', {
+    q: 'from:@conc_at OR @conc_at OR #concat OR #concat15 OR #concat2015',
+    count: 10
+  }, function(err, data, response) {
+    if (err) {
+      return res.sendStatus(500)
+    }
+    res.send(data)
+  })
 })
 
 var port = process.env.PORT || 8000
