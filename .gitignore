@@ -1,6 +1,8 @@
 # ignore dependencies
 node_modules/
 
+.env
+
 # ignore generated files
 build/
 

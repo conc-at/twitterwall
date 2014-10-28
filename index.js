@@ -12,4 +12,7 @@ app.get('/tweets', function(req, res) {
   res.send('hello world')
 })
 
-app.listen(process.env.PORT || 8000)
+var port = process.env.PORT || 8000
+app.listen(port, function() {
+  console.log("Listening on " + port)
+})
