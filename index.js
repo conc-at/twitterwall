@@ -3,6 +3,7 @@
 var http = require('http')
 var path = require('path')
 
+var debug = require('debug')('twitterwall')
 var express = require('express')
 var Twit = require('twit')
 var socketio = require('socket.io')
@@ -17,6 +18,20 @@ var T = new Twit({
   access_token: process.env.ACCESS_TOKEN,
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
   /*jshint camelcase: true */
+})
+
+debug('starting streams...')
+var hashStream = T.stream('statuses/filter', {track: '#concat,#concat15,#concat2015'})
+var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
+
+userStream.on('tweet', function(tweet) {
+  debug('user: %s', tweet.text)
+  io.emit('tweet', tweet)
+})
+
+hashStream.on('tweet', function(tweet) {
+  debug('hash: %s', tweet.text)
+  io.emit('tweet', tweet)
 })
 
 app.use(express.static(path.join(__dirname, 'static')))
@@ -36,5 +51,5 @@ app.get('/tweets', function(req, res) {
 var port = process.env.PORT || 8000
 
 server.listen(port, function() {
-  console.log('Listening on ' + port)
+  debug('Listening on %d', port)
 })
