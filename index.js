@@ -1,14 +1,15 @@
 'use strict'
 
+var http = require('http')
 var path = require('path')
 
-var Twit = require('twit')
 var express = require('express')
+var Twit = require('twit')
+var socketio = require('socket.io')
+
 var app = express()
-var httpServer = require('http').Server(app)
-var io = require('socket.io')(httpServer)
-
-
+var server = http.Server(app)
+var io = socketio(server)
 var T = new Twit({
   /*jshint camelcase: false */
   consumer_key: process.env.CONSUMER_KEY,
@@ -26,6 +27,6 @@ app.get('/tweets', function(req, res) {
 
 var port = process.env.PORT || 8000
 
-httpServer.listen(port, function() {
+server.listen(port, function() {
   console.log('Listening on ' + port)
 })
