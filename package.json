@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/conc-at/twitterwall/issues"
   },
-  "homepage": "https://github.com/conc-at/twitterwall"
+  "homepage": "https://github.com/conc-at/twitterwall",
+  "dependencies": {
+    "express": "^4.10.0",
+    "socket.io": "^1.2.0",
+    "twit": "^1.1.18"
+  }
 }
