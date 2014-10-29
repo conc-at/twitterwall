@@ -54,10 +54,16 @@ htTS.track('#concat')
 htTS.track('#concat15')
 htTS.track('#concat2015')
 
-uTS.follow('14383393')
-uTS.follow('19575586')
-uTS.follow('2704051574')
-uTS.track('@conc_at')
+debug('resolving screen name')
+
+T.get('users/lookup', {screen_name: 'conc_at,hackernewsbot,zurvollenstunde'}, function (err, data, response) {
+  if(err) return
+  data.forEach(function(u){
+    debug('found twitter id(@%s): %s', u.screen_name, u.id_str)
+    uTS.follow(u.id_str)
+    uTS.track('@' + u.screen_name)
+  })
+})
 
 io.on('connection', function(socket){
   T.get('search/tweets', {
