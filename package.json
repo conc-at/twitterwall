@@ -38,7 +38,6 @@
     "emojize": "^0.2.0",
     "express": "^4.10.0",
     "less": "^1.7.5",
-    "node-tweet-stream": "^1.6.0",
     "parallizer": "^1.0.4",
     "socket.io": "^1.2.0",
     "twit": "^1.1.18",
