@@ -22,10 +22,10 @@ var T = new Twit({
 })
 
 debug('starting streams...')
-var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
-var hashStream = T.stream('statuses/filter', {track: 'mango,#concat,#concat15,#concat2015'})
+//var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
+//var hashStream = T.stream('statuses/filter', {track: 'mango,#concat,#concat15,#concat2015'})
 
-;[hashStream, userStream].forEach(function(stream) {
+;[/*hashStream, userStream*/].forEach(function(stream) {
   stream.on('tweet', function(tweet) {
     debug('tweet: %s', tweet.text)
     io.emit('tweet', tweet)
