@@ -7,32 +7,17 @@ var debug = require('debug')('twitterwall')
 var express = require('express')
 var Twit = require('twit')
 var TweetStream = require('node-tweet-stream')
-var socketio = require('socket.io')
 var parallizer = require('parallizer')
+
+var lib = require('./lib')
 
 var app = express()
 var server = http.Server(app)
-var io = socketio(server)
-var T = new Twit({
-  /*jshint camelcase: false */
-  consumer_key: process.env.CONSUMER_KEY,
-  consumer_secret: process.env.CONSUMER_SECRET,
-  access_token: process.env.ACCESS_TOKEN,
-  access_token_secret: process.env.ACCESS_TOKEN_SECRET
-  /*jshint camelcase: true */
-})
+var io = require('socket.io')(server)
+var T = new Twit(lib.twitterconfig)
 
-var configTS = {
-  /*jshint camelcase: false */
-  consumer_key: process.env.CONSUMER_KEY,
-  consumer_secret: process.env.CONSUMER_SECRET,
-  token: process.env.ACCESS_TOKEN,
-  token_secret: process.env.ACCESS_TOKEN_SECRET
-  /*jshint camelcase: true */
-}
-
-var htTS = new TweetStream(configTS)
-var uTS = new TweetStream(configTS)
+var htTS = new TweetStream(lib.twitterconfig)
+var uTS = new TweetStream(lib.twitterconfig)
 
 debug('starting streams...')
 
@@ -80,7 +65,7 @@ io.on('connection', function(socket){
         }, 500 + Math.random()*2000)
       }, t);
     })
-    
+
   })
 })
 
