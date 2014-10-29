@@ -15,28 +15,28 @@ var server = http.Server(app)
 var io = require('socket.io')(server)
 var T = new Twit(lib.twitter.config)
 
-var htTS = new TweetStream(lib.twitter.config)
-var uTS = new TweetStream(lib.twitter.config)
+var hashStream = new TweetStream(lib.twitter.config)
+var userStream = new TweetStream(lib.twitter.config)
 
 debug('starting streams...')
 
-;[htTS, uTS].forEach(function(stream) {
-  stream.on('tweet', function (tweet) {
-    debug('tweet: %s', tweet.text)
-    io.emit('tweet', tweet)
-  })
-  stream.on('reconnect', function(rce) {
-    debug('reconnect: %s', rce.type)
-  })
-  stream.on('error', function (err) {
-    debug('error: %s', err)
-  })
+var stream = lib.twitter.unify([hashStream, userStream])
+
+stream.on('tweet', function (tweet) {
+  debug('tweet: %s', tweet.text)
+  io.emit('tweet', tweet)
+})
+stream.on('reconnect', function(rce) {
+  debug('reconnect: %s', rce.type)
+})
+stream.on('error', function (err) {
+  debug('error: %s', err)
 })
 
-htTS.track('banana')
-htTS.track('#concat')
-htTS.track('#concat15')
-htTS.track('#concat2015')
+hashStream.track('banana')
+hashStream.track('#concat')
+hashStream.track('#concat15')
+hashStream.track('#concat2015')
 
 debug('resolving screen name')
 
@@ -44,8 +44,8 @@ T.get('users/lookup', {screen_name: 'conc_at,hackernewsbot,zurvollenstunde'}, fu
   if(err) return
   data.forEach(function(u){
     debug('found twitter id(@%s): %s', u.screen_name, u.id_str)
-    uTS.follow(u.id_str)
-    uTS.track('@' + u.screen_name)
+    userStream.follow(u.id_str)
+    userStream.track('@' + u.screen_name)
   })
 })
 
