@@ -17,7 +17,6 @@ angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
     }
 
     $scope.linkMedia = function(media) {
-      console.log(decodeURI(media.media_url_https))
       return decodeURI(media.media_url_https)
     }
 
