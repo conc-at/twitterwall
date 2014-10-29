@@ -6,6 +6,7 @@ var path = require('path')
 var debug = require('debug')('twitterwall')
 var express = require('express')
 var Twit = require('twit')
+var TweetStream = require('node-tweet-stream')
 var socketio = require('socket.io')
 var parallizer = require('parallizer')
 
@@ -20,8 +21,32 @@ var T = new Twit({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
   /*jshint camelcase: true */
 })
+var TS = new TweetStream({
+  /*jshint camelcase: false */
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  token: process.env.ACCESS_TOKEN,
+  token_secret: process.env.ACCESS_TOKEN_SECRET
+  /*jshint camelcase: true */
+})
 
 debug('starting streams...')
+
+TS.on('tweet', function (tweet) {
+  console.log('tweet received', tweet)
+})
+
+TS.on('reconnect', function(rce){
+  console.log(rce.type)
+})
+
+TS.on('error', function (err) {
+  console.log('Oh no')
+})
+
+TS.track('banana')
+TS.track('mango')
+
 //var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
 //var hashStream = T.stream('statuses/filter', {track: 'mango,#concat,#concat15,#concat2015'})
 
