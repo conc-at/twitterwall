@@ -3,7 +3,7 @@
 module.exports = {
   title: '.concat() 2015 Twitterwall',
   twitter: {
-    tracks: ['banana', '#concat', '#concat15', '#concat2015'],
+    tracks: ['#concat', '#concat15', '#concat2015'],
     users: ['conc_at', 'hackernewsbot', 'zurvollenstunde'],
     auth: {
       access_token: process.env.ACCESS_TOKEN,

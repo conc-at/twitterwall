@@ -8,47 +8,43 @@ var express = require('express')
 var Twit = require('twit')
 
 var lib = require('./lib')
-var config = require('./config.js')
+var config = require('./config')
 
 var app = express()
 var server = http.Server(app)
 var io = require('socket.io')(server)
 var T = new Twit(config.twitter.auth)
 
-var hashStream = T.stream('statuses/filter', {track: '💩,banana,#concat,#concat15,#concat2015'})
-var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
-
-debug('starting streams...')
-
-var stream = lib.twitter.unify([hashStream, userStream])
-
-stream.on('tweet', function (tweet) {
-  debug('tweet: %s', tweet.text)
-  io.emit('tweet', tweet)
-})
-
-stream.on('error', function (err) {
-  debug('error: %s', err.message)
-})
-
-debug('resolving screen name')
-
-T.get('users/lookup', {screen_name: 'conc_at,hackernewsbot,zurvollenstunde'}, function (err, data, response) {
-  if(err) return
+debug('resolving screen names')
+T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (err, data, response) {
+  if(err) return debug('error: %s', err)
+  var userids = []
   data.forEach(function(u){
-    debug('found twitter id(@%s): %s', u.screen_name, u.id_str)
-    //u.id_str
-    //'@' + u.screen_name
+    userids.push(u.id_str)
   })
-})
+  var searchConf = lib.twitter.config.parse(config.twitter.tracks, config.twitter.users, userids)
+  debug('starting streams...')
+  var hashStream = T.stream('statuses/filter', searchConf.hashtags)
+  var userStream = T.stream('statuses/filter', searchConf.users)
+  var stream = lib.twitter.unify([hashStream, userStream])
 
-io.on('connection', function(socket){
-  T.get('search/tweets', {
-    q: 'from:@conc_at OR @conc_at OR #concat OR #concat15 OR #concat2015',
-    count: 10
-  }, function(err, data, response) {
-    if(err) return
-    lib.twitter.stagger(socket, data.statuses)
+  stream.on('tweet', function (tweet) {
+    debug('tweet: %s', tweet.text)
+    io.emit('tweet', tweet)
+  })
+
+  stream.on('error', function (err) {
+    debug('error: %s', err.message)
+  })
+
+  io.on('connection', function(socket){
+    T.get('search/tweets', {
+      q: searchConf.qstr,
+      count: 10
+    }, function(err, data, response) {
+      if(err) return
+      lib.twitter.stagger(socket, data.statuses)
+    })
   })
 })
 
