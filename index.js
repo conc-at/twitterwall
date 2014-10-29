@@ -22,7 +22,6 @@ var T = new Twit({
   /*jshint camelcase: true */
 })
 
-
 var configTS = {
   /*jshint camelcase: false */
   consumer_key: process.env.CONSUMER_KEY,
@@ -93,11 +92,6 @@ io.of('/test').on('connection', function(socket){
 })
 
 app.use(express.static(path.join(__dirname, 'build')))
-
-app.get('/faketweet', function(req, res){
-  io.emit('tweet', {text: '#concat'})
-  res.send('fake')
-})
 
 var port = process.env.PORT || 8000
 
