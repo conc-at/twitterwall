@@ -8,11 +8,12 @@ var express = require('express')
 var Twit = require('twit')
 
 var lib = require('./lib')
+var config = require('./config.js')
 
 var app = express()
 var server = http.Server(app)
 var io = require('socket.io')(server)
-var T = new Twit(lib.twitter.config)
+var T = new Twit(config.twitter.auth)
 
 var hashStream = T.stream('statuses/filter', {track: 'banana,#concat,#concat15,#concat2015'})
 var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
