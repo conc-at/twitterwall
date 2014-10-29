@@ -5,7 +5,7 @@
 </head>
 <body ng-app="twitterwall" ng-controller="SiteCtrl">
   <ul class="tweets">
-    <li ng-repeat="tweet in tweets" class="tweet tweet-animation">
+    <li ng-repeat="tweet in tweets track by tweet.id" class="tweet tweet-animation">
       <img ng-src="{{tweet.user.profile_image_url_https}}">
       <div>
         <div class="screenname">@{{tweet.user.screen_name}}</div>
