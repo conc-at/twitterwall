@@ -6,7 +6,6 @@ var path = require('path')
 var debug = require('debug')('twitterwall')
 var express = require('express')
 var Twit = require('twit')
-var TweetStream = require('node-tweet-stream')
 
 var lib = require('./lib')
 
@@ -15,8 +14,8 @@ var server = http.Server(app)
 var io = require('socket.io')(server)
 var T = new Twit(lib.twitter.config)
 
-var hashStream = new TweetStream(lib.twitter.config)
-var userStream = new TweetStream(lib.twitter.config)
+var hashStream = T.stream('statuses/filter', {track: 'banana,#concat,#concat15,#concat2015'})
+var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
 
 debug('starting streams...')
 
@@ -26,17 +25,10 @@ stream.on('tweet', function (tweet) {
   debug('tweet: %s', tweet.text)
   io.emit('tweet', tweet)
 })
-stream.on('reconnect', function(rce) {
-  debug('reconnect: %s', rce.type)
-})
-stream.on('error', function (err) {
-  debug('error: %s', err)
-})
 
-hashStream.track('banana')
-hashStream.track('#concat')
-hashStream.track('#concat15')
-hashStream.track('#concat2015')
+stream.on('error', function (err) {
+  debug('error: %s', err.message)
+})
 
 debug('resolving screen name')
 
@@ -44,8 +36,8 @@ T.get('users/lookup', {screen_name: 'conc_at,hackernewsbot,zurvollenstunde'}, fu
   if(err) return
   data.forEach(function(u){
     debug('found twitter id(@%s): %s', u.screen_name, u.id_str)
-    userStream.follow(u.id_str)
-    userStream.track('@' + u.screen_name)
+    //u.id_str
+    //'@' + u.screen_name
   })
 })
 
@@ -58,8 +50,6 @@ io.on('connection', function(socket){
     lib.twitter.stagger(socket, data.statuses)
   })
 })
-
-
 
 var testTweets = require('./data/tweets.json')
 io.of('/test').on('connection', function(socket){
