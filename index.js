@@ -7,17 +7,16 @@ var debug = require('debug')('twitterwall')
 var express = require('express')
 var Twit = require('twit')
 var TweetStream = require('node-tweet-stream')
-var parallizer = require('parallizer')
 
 var lib = require('./lib')
 
 var app = express()
 var server = http.Server(app)
 var io = require('socket.io')(server)
-var T = new Twit(lib.twitterconfig)
+var T = new Twit(lib.twitter.config)
 
-var htTS = new TweetStream(lib.twitterconfig)
-var uTS = new TweetStream(lib.twitterconfig)
+var htTS = new TweetStream(lib.twitter.config)
+var uTS = new TweetStream(lib.twitter.config)
 
 debug('starting streams...')
 
@@ -56,32 +55,15 @@ io.on('connection', function(socket){
     count: 10
   }, function(err, data, response) {
     if(err) return
-    var prl = parallizer.Parallel(1)
-    data.statuses.forEach(function(t){
-      prl.sadd(function(t, cb){
-        setTimeout(function(){
-          socket.emit('tweet', t)
-          cb()
-        }, 500 + Math.random()*2000)
-      }, t);
-    })
-
+    lib.twitter.stagger(socket, data.statuses)
   })
 })
 
 
-var testTweets = require('./data/tweets.json')
 
+var testTweets = require('./data/tweets.json')
 io.of('/test').on('connection', function(socket){
-  var prl = parallizer.Parallel(1)
-  testTweets.statuses.forEach(function(t){
-    prl.sadd(function(t, cb){
-      setTimeout(function(){
-        socket.emit('tweet', t)
-        cb()
-      }, 500 + Math.random()*2000)
-    }, t);
-  })
+  lib.twitter.stagger(socket, testTweets.statuses)
 })
 
 app.use(express.static(path.join(__dirname, 'build')))
