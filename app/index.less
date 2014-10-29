@@ -6,12 +6,18 @@
   box-sizing: border-box;
 }
 
+html, body, body > section {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: Helvetica Neue, sans-serif;
   > section {
     display: flex;
     flex-direction: row;
+    overflow: hidden;
     background-position: center;
     background-size: cover;
   }
