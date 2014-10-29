@@ -2,9 +2,20 @@
 
 @primary: #c50202;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Helvetica Neue, sans-serif;
+  > section {
+    display: flex;
+    flex-direction: row;
+    background-position: center;
+    background-size: cover;
+  }
+
 }
 
 a, a:hover, a:visited, a:active {
@@ -16,14 +27,22 @@ a, a:hover, a:visited, a:active {
   zoom: 0.35;
 }
 
+.schedule {
+  flex-grow: 1;
+  width: 50%;
+}
+
 .tweets {
+  flex-grow: 1;
+  width: 50%;
   margin: 0;
   padding: 0;
 }
 
 .tweet {
-  color: #333333;
-  background: #f7f7f7;
+  position: relative;
+  background-color: #f7f7f7;
+  color: #111111;
   display: block;
   padding: 20px;
   margin: 20px;
@@ -31,6 +50,7 @@ a, a:hover, a:visited, a:active {
   border-radius: 5px;
   box-shadow: 0 0 1px black;
   overflow: hidden;
+  text-shadow: 0 0 15px white;
 
   .screenname {
     font-weight: bold;
@@ -41,26 +61,44 @@ a, a:hover, a:visited, a:active {
     font-size: 24px;
   }
 
-  img {
+  .info {
+    margin-left: 113px;
+
+    img {
+      display: block;
+      width: 100%;
+      margin: 10px;
+      margin-bottom: 0;
+    }
+  }
+
+  > img {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     display: block;
-    height: 150px;
-    width: 150px;
-    margin-right: 20px;
-    border-radius: 75px;
-    float: left;
+    height: 73px;
+    width: 73px;
+    border-radius: 100%;
   }
 }
 
 .tweet-animation {
-  &.ng-enter, &.ng-leave, &.ng-move {
-  -webkit-transition:0.5s ease-out all;
-  transition:0.5s ease-out all;
+  &, &.ng-enter, &.ng-leave, &.ng-move {
+  -webkit-transition: 0.5s ease-out all;
+  transition: 0.5s ease-out all;
   }
 
-  &.ng-enter, &.ng-leave.ng-leave-active, &.ng-move.ng-move-active {
+  &.ng-enter {
     opacity: 0;
     -webkit-transform: translateY(-100%);
     transform: translateY(-100%);
+  }
+
+  &.ng-leave.ng-leave-active, &.ng-move.ng-move-active {
+    opacity: 0;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
   }
 
   &.ng-leave, &.ng-move, &.ng-enter.ng-enter-active {
