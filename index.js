@@ -23,7 +23,7 @@ var T = new Twit({
 
 debug('starting streams...')
 var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
-var hashStream = T.stream('statuses/filter', {track: 'mango,strawberry,banana,#concat,#concat15,#concat2015'})
+var hashStream = T.stream('statuses/filter', {track: 'mango,#concat,#concat15,#concat2015'})
 
 ;[hashStream, userStream].forEach(function(stream) {
   stream.on('tweet', function(tweet) {
@@ -40,9 +40,7 @@ io.on('connection', function(socket){
     q: 'from:@conc_at OR @conc_at OR #concat OR #concat15 OR #concat2015',
     count: 10
   }, function(err, data, response) {
-    if(err) {
-      return
-    }
+    if(err) return
     var prl = parallizer.Parallel(1)
     data.statuses.forEach(function(t){
       prl.sadd(function(t, cb){
@@ -53,6 +51,21 @@ io.on('connection', function(socket){
       }, t);
     })
     
+  })
+})
+
+
+var testTweets = require('./data/tweets.json')
+
+io.of('/test').on('connection', function(socket){
+  var prl = parallizer.Parallel(1)
+  testTweets.statuses.forEach(function(t){
+    prl.sadd(function(t, cb){
+      setTimeout(function(){
+        socket.emit('tweet', t)
+        cb()
+      }, 500 + Math.random()*2000)
+    }, t);
   })
 })
 

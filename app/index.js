@@ -10,5 +10,5 @@ angular.module('twitterwall', [])
     })
   })
   .run(function($rootScope) {
-    $rootScope.socket = io()
+    $rootScope.socket = io('/test')
   })
