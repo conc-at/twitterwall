@@ -7,6 +7,7 @@ var debug = require('debug')('twitterwall')
 var express = require('express')
 var Twit = require('twit')
 var socketio = require('socket.io')
+var parallizer = require('parallizer')
 
 var app = express()
 var server = http.Server(app)
@@ -21,32 +22,45 @@ var T = new Twit({
 })
 
 debug('starting streams...')
-var hashStream = T.stream('statuses/filter', {track: '#concat,#concat15,#concat2015'})
 var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
+var hashStream = T.stream('statuses/filter', {track: 'mango,strawberry,banana,#concat,#concat15,#concat2015'})
 
-userStream.on('tweet', function(tweet) {
-  debug('user: %s', tweet.text)
-  io.emit('tweet', tweet)
+;[hashStream, userStream].forEach(function(stream) {
+  stream.on('tweet', function(tweet) {
+    debug('tweet: %s', tweet.text)
+    io.emit('tweet', tweet)
+  })
+  stream.on('error', function(err) {
+    debug('error: %s', err.message)
+  })
 })
 
-hashStream.on('tweet', function(tweet) {
-  debug('hash: %s', tweet.text)
-  io.emit('tweet', tweet)
-})
-
-app.use(express.static(path.join(__dirname, 'static')))
-app.use(express.static(path.join(__dirname, 'build')))
-
-app.get('/tweets', function(req, res) {
+io.on('connection', function(socket){
   T.get('search/tweets', {
     q: 'from:@conc_at OR @conc_at OR #concat OR #concat15 OR #concat2015',
     count: 10
   }, function(err, data, response) {
-    if (err) {
-      return res.sendStatus(500)
+    if(err) {
+      return
     }
-    res.send(data)
+    var prl = parallizer.Parallel(1)
+    data.statuses.forEach(function(t){
+      prl.sadd(function(t, cb){
+        setTimeout(function(){
+          socket.emit('tweet', t)
+          cb()
+        }, 500 + Math.random()*2000)
+      }, t);
+    })
+    
   })
+})
+
+app.use(express.static(path.join(__dirname, 'build')))
+
+app.get('/faketweet', function(req, res){
+  io.emit('tweet', {text: '#concat'})
+  res.send('fake')
 })
 
 var port = process.env.PORT || 8000
