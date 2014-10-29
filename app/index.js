@@ -1,9 +1,14 @@
 var angular = require('angular')
 require('angular-sanitize')
+require('angular-animate')
 var link = require('twitter-text')
 var emoji = require('emojize')
 
-angular.module('twitterwall', ['ngSanitize'])
+function avatar(url) {
+  return url.replace('_normal','')
+}
+
+angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
   .controller('SiteCtrl', function($scope, $sanitize) {
     $scope.tweets = []
 
@@ -15,6 +20,10 @@ angular.module('twitterwall', ['ngSanitize'])
       if (tweet.retweeted_status || tweet.possibly_sensitive) {
         return
       }
+
+      tweet.user.profile_image_url = avatar(tweet.user.profile_image_url)
+      tweet.user.profile_image_url_https = avatar(tweet.user.profile_image_url_https)
+      tweet.created_at = new Date(tweet.created_at)
 
       $scope.tweets.unshift(tweet)
 

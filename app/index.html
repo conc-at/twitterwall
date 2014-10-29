@@ -4,11 +4,14 @@
   <link rel="stylesheet" type="text/css" href="bundle.css">
 </head>
 <body ng-app="twitterwall" ng-controller="SiteCtrl">
-  <ul>
-    <li ng-repeat="tweet in tweets">
+  <ul class="tweets">
+    <li ng-repeat="tweet in tweets" class="tweet tweet-animation">
       <img ng-src="{{tweet.user.profile_image_url_https}}">
-      {{tweet.user.screen_name}}
-      <span ng-bind-html="linkTweet(tweet)"></span>
+      <div>
+        <div class="screenname">@{{tweet.user.screen_name}}</div>
+        <div class="text" ng-bind-html="linkTweet(tweet)"></div>
+        <time>{{tweet.created_at | date : 'shortDate'}}</time>
+      </div>
     </li>
   </ul>
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>

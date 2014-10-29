@@ -1,9 +1,67 @@
 @import (less) "../node_modules/emojize/sprite/emoji.css";
 
+@primary: #c50202;
+
 body {
   margin: 0;
+  font-family: Helvetica Neue, sans-serif;
+}
+
+a, a:hover, a:visited, a:active {
+  color: @primary;
+  text-decoration: none;
 }
 
 .emoji {
   zoom: 0.35;
+}
+
+.tweets {
+  margin: 0;
+  padding: 0;
+}
+
+.tweet {
+  color: #333333;
+  background: #f7f7f7;
+  display: block;
+  padding: 20px;
+  margin: 20px;
+  margin-bottom: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 1px black;
+  overflow: hidden;
+
+  .screenname {
+    font-weight: bold;
+    font-size: 36px;
+  }
+
+  .text {
+    font-size: 24px;
+  }
+
+  img {
+    display: block;
+    height: 150px;
+    width: 150px;
+    margin-right: 20px;
+    border-radius: 75px;
+    float: left;
+  }
+}
+
+.tweet-animation.ng-enter,
+.tweet-animation.ng-leave {
+  -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+}
+
+.tweet-animation.ng-enter,
+.tweet-animation.ng-leave.ng-leave-active {
+  opacity:0;
+}
+.tweet-animation.ng-leave,
+.tweet-animation.ng-enter.ng-enter-active {
+  opacity:1;
 }
