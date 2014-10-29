@@ -17,5 +17,5 @@ angular.module('twitterwall', ['ngSanitize'])
     })
   })
   .run(function($rootScope) {
-    $rootScope.socket = io('/test')
+    $rootScope.socket = io()
   })

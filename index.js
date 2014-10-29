@@ -21,44 +21,42 @@ var T = new Twit({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
   /*jshint camelcase: true */
 })
-var TS = new TweetStream({
+
+
+var configTS = {
   /*jshint camelcase: false */
   consumer_key: process.env.CONSUMER_KEY,
   consumer_secret: process.env.CONSUMER_SECRET,
   token: process.env.ACCESS_TOKEN,
   token_secret: process.env.ACCESS_TOKEN_SECRET
   /*jshint camelcase: true */
-})
+}
+
+var htTS = new TweetStream(configTS)
+var uTS = new TweetStream(configTS)
 
 debug('starting streams...')
 
-TS.on('tweet', function (tweet) {
-  console.log('tweet received', tweet)
-})
-
-TS.on('reconnect', function(rce){
-  console.log(rce.type)
-})
-
-TS.on('error', function (err) {
-  console.log('Oh no')
-})
-
-TS.track('banana')
-TS.track('mango')
-
-//var userStream = T.stream('statuses/filter', {follow: '2704051574', track: '@conc_at'})
-//var hashStream = T.stream('statuses/filter', {track: 'mango,#concat,#concat15,#concat2015'})
-
-;[/*hashStream, userStream*/].forEach(function(stream) {
-  stream.on('tweet', function(tweet) {
+;[htTS, uTS].forEach(function(stream) {
+  stream.on('tweet', function (tweet) {
     debug('tweet: %s', tweet.text)
     io.emit('tweet', tweet)
   })
-  stream.on('error', function(err) {
-    debug('error: %s', err.message)
+  stream.on('reconnect', function(rce) {
+    debug('reconnect: %s', rce.type)
+  })
+  stream.on('error', function (err) {
+    debug('error: %s', err)
   })
 })
+
+htTS.track('banana')
+htTS.track('#concat')
+htTS.track('#concat15')
+htTS.track('#concat2015')
+
+uTS.follow('2704051574')
+uTS.track('@conc_at')
 
 io.on('connection', function(socket){
   T.get('search/tweets', {
