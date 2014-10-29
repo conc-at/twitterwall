@@ -12,7 +12,16 @@ angular.module('twitterwall', ['ngSanitize'])
     }
 
     $scope.socket.on('tweet', function(tweet){
+      if (tweet.retweeted_status || tweet.possibly_sensitive) {
+        return
+      }
+
       $scope.tweets.unshift(tweet)
+
+      if ($scope.tweets.length > 10) {
+        $scope.tweets = $scope.tweets.slice(0, 10)
+      }
+
       $scope.$apply()
     })
   })
