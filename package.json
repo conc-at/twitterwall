@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf build && mkdir build",
-    "build-js": "browserify ./app/index.js > ./build/bundle.js",
+    "build-js": "browserify app/index.js > build/bundle.js",
+    "build-css": "lessc app/index.less > build/bundle.css",
     "build-html": "cp app/*.html build/",
-    "build": "npm run clean && npm run build-js && npm run build-html",
+    "copy": "cp node_modules/emoji/lib/emoji.png build/",
+    "build": "npm run clean && npm run copy && npm run build-js && npm run build-css && npm run build-html",
     "watch": "watchify app/index.js -o build/bundle.js -dv",
     "start": "npm run build && nf start",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,7 +35,9 @@
     "browserify": "^6.2.0",
     "browserify-shim": "^3.8.0",
     "debug": "^2.1.0",
+    "emoji": "^0.3.2",
     "express": "^4.10.0",
+    "less": "^1.7.5",
     "node-tweet-stream": "^1.6.0",
     "parallizer": "^1.0.4",
     "socket.io": "^1.2.0",
