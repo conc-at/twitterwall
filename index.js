@@ -72,6 +72,10 @@ app.post('/tweet', basicAuth(config.admin.username, config.admin.password), func
   res.send('OK')
 })
 
+app.get('/sponsoring', function(req, res){
+  res.send(config.sponsoring)
+})
+
 var port = process.env.PORT || 8000
 
 server.listen(port, function() {

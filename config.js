@@ -16,5 +16,10 @@ module.exports = {
   admin: {
     username: 'admin',
     password: '123456'
+  },
+  sponsoring:{
+    'Fachhochschule Salzburg GmbH': {
+      image: 'https://barcamp-sbg.at/images/logos/fh@2x.jpg'
+    }
   }
 }
