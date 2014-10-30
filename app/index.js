@@ -1,6 +1,9 @@
 var angular = require('angular')
+var ngTimeRelative = require('ng-time-relative')
+var moment = require('ng-time-relative/node_modules/moment')
 require('angular-sanitize')
 require('angular-animate')
+
 var link = require('twitter-text')
 var emoji = require('emojize')
 
@@ -8,7 +11,7 @@ function avatar(url) {
   return url.replace('_normal','_bigger')
 }
 
-angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
+var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
   .controller('SiteCtrl', function($scope, $sanitize) {
     $scope.tweets = []
 
@@ -27,7 +30,6 @@ angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
 
       tweet.user.profile_image_url = avatar(tweet.user.profile_image_url)
       tweet.user.profile_image_url_https = avatar(tweet.user.profile_image_url_https)
-      tweet.created_at = new Date(tweet.created_at)
 
       $scope.tweets.unshift(tweet)
 
@@ -41,3 +43,6 @@ angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
   .run(function($rootScope) {
     $rootScope.socket = io()
   })
+
+app.constant('moment', moment)
+ngTimeRelative(app)
