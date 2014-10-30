@@ -49,7 +49,7 @@ T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (e
       count: 10
     }, function(err, data, response) {
       if(err) return
-      lib.twitter.stagger(socket, data.statuses)
+      lib.twitter.stagger(socket, data.statuses.reverse())
     })
   })
 })
