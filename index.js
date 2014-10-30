@@ -1,11 +1,9 @@
 'use strict'
 
 var http = require('http')
-var path = require('path')
 
 var debug = require('debug')('twitterwall')
 var express = require('express')
-var bodyParser = require('body-parser')
 var basicAuth = require('basic-auth-connect')
 var Twit = require('twit')
 var Lanyrd = require('lanyrd')
@@ -18,6 +16,7 @@ var server = http.Server(app)
 var io = require('socket.io')(server)
 var T = new Twit(config.twitter.auth)
 
+lib.middlewares(app)
 
 function throttleDelay(tweet, callback) {
   setTimeout(
@@ -67,10 +66,6 @@ var testTweets = require('./data/tweets.json')
 io.of('/test').on('connection', function(socket){
   lib.twitter.stagger(socket, testTweets.statuses)
 })
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(express.static(path.join(__dirname, 'build')))
 
 app.post('/tweet', basicAuth(config.admin.username, config.admin.password), function(req, res){
   debug('sending fake tweet...')
