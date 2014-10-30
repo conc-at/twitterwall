@@ -42,7 +42,7 @@
     "express": "^4.10.0",
     "lanyrd": "^0.2.1",
     "less": "^1.7.5",
-    "ng-time-relative": "git://github.com/boennemann/ng-time-relative#patch-1",
+    "ng-time-relative": "0.6.0",
     "parallizer": "^1.0.4",
     "socket.io": "^1.2.0",
     "twit": "^1.1.18",
