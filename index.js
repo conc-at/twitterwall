@@ -26,6 +26,8 @@ function throttleDelay(tweet, callback) {
   )
 }
 
+var blocked = config.admin.blocked || []
+
 debug('resolving screen names')
 T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (err, data, response) {
   if(err) return debug('error: %s', err)
@@ -71,6 +73,13 @@ app.use(express.static(path.join(__dirname, 'build')))
 
 app.post('/tweet', basicAuth(config.admin.username, config.admin.password), function(req, res){
   debug('sending fake tweet...')
+  //req.body
+  res.send('OK')
+})
+
+app.post('/block', basicAuth(config.admin.username, config.admin.password), function(req, res){
+  debug('blocking user/tweet...')
+  //req.body
   res.send('OK')
 })
 
