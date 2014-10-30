@@ -20,7 +20,7 @@ lib.middlewares(app)
 lib.routes(app, lib)
 lib.socketio(app, lib)
 
-var port = process.env.PORT || 8000
+var port = process.env.PORT || app.configjs.port || 8000
 
 server.listen(port, function() {
   app.debug('Listening on %d', port)
