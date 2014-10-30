@@ -12,7 +12,9 @@ function avatar(url) {
 }
 
 var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
-  .controller('SiteCtrl', function($scope, $sanitize) {
+  .controller('SiteCtrl', function($scope, $sanitize, config) {
+    $scope.title = config.title
+
     $scope.tweets = []
 
     $scope.linkTweet = function(tweet) {
