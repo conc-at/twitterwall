@@ -66,12 +66,6 @@ io.of('/test').on('connection', function(socket){
   lib.twitter.stagger(socket, testTweets.statuses)
 })
 
-app.post('/block', basicAuth(config.admin.username, config.admin.password), function(req, res){
-  debug('blocking user/tweet...')
-  //req.body
-  res.send('OK')
-})
-
 var port = process.env.PORT || 8000
 
 server.listen(port, function() {
