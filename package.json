@@ -24,6 +24,10 @@
     "twitterwall"
   ],
   "author": "",
+  "contributors": [
+    "Stephan Bönnemann <stephan@boennemann.me>",
+    "Christoph Witzko <github@christophwitzko.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/conc-at/twitterwall/issues"
