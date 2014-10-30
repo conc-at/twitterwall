@@ -5,6 +5,7 @@ var path = require('path')
 
 var debug = require('debug')('twitterwall')
 var express = require('express')
+var bodyParser = require('body-parser')
 var Twit = require('twit')
 
 var lib = require('./lib')
@@ -62,6 +63,8 @@ io.of('/test').on('connection', function(socket){
   lib.twitter.stagger(socket, testTweets.statuses)
 })
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'build')))
 
 var port = process.env.PORT || 8000
