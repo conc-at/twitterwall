@@ -5,7 +5,6 @@ var http = require('http')
 var debug = require('debug')('twitterwall')
 var express = require('express')
 var Twit = require('twit')
-var Lanyrd = require('lanyrd')
 
 var lib = require('./lib')
 var config = require('./config')
@@ -71,14 +70,6 @@ app.post('/block', basicAuth(config.admin.username, config.admin.password), func
   debug('blocking user/tweet...')
   //req.body
   res.send('OK')
-})
-
-app.get('/schedule', function(req, res){
-  debug('sending schedule...')
-  Lanyrd.schedule(config.lanyrd.id, config.lanyrd.year, function(err, resp, schedule){
-    if(err) return res.send({error: err})
-    res.send(schedule)
-  })
 })
 
 var port = process.env.PORT || 8000
