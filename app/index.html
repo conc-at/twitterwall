@@ -19,7 +19,7 @@
         >
         <div class="info">
           <span class="screenname">@{{tweet.user.screen_name}}</span>
-          <time relative>{{tweet.created_at}}</time>
+          <time relative datetime="{{tweet.created_at}}"></time>
           <div class="text" ng-bind-html="linkTweet(tweet)"></div>
           <div class="media" ng-repeat="media in tweet.entities.media">
             <img ng-src="{{linkMedia(media)}}">
