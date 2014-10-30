@@ -70,15 +70,18 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.post('/tweet', basicAuth(config.admin.username, config.admin.password), function(req, res){
+  debug('sending fake tweet...')
   res.send('OK')
 })
 
 app.get('/sponsoring', function(req, res){
+  debug('sending sponsoring...')
   res.send(config.sponsoring)
 })
 
 
 app.get('/schedule', function(req, res){
+  debug('sending schedule...')
   Lanyrd.schedule(config.lanyrd.id, config.lanyrd.year, function(err, resp, schedule){
     if(err) return res.send({error: err})
     res.send(schedule)
