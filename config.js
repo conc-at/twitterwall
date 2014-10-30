@@ -20,7 +20,8 @@ module.exports = {
   },
   admin: {
     username: 'admin',
-    password: '123456'
+    password: '123456',
+    blocked: ['💩']
   },
   sponsoring:{
     sonsors: {
