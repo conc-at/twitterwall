@@ -15,15 +15,19 @@ module.exports = {
   },
   lanyrd:{
     year: '2014',
-    id: 'barcamp-salzburg-october'
+    id: 'barcamp-salzburg-october',
+    showNext: 5*60*1000
   },
   admin: {
     username: 'admin',
     password: '123456'
   },
   sponsoring:{
-    'Fachhochschule Salzburg GmbH': {
-      image: 'https://barcamp-sbg.at/images/logos/fh@2x.jpg'
-    }
+    sonsors: {
+      'Fachhochschule Salzburg GmbH': {
+        image: 'https://barcamp-sbg.at/images/logos/fh@2x.jpg'
+      }
+    },
+    displayDuration: 5000
   }
 }
