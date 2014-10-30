@@ -39,6 +39,10 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
 
       $scope.$apply()
     })
+
+    $scope.socket.on('block', function(block){
+      console.log(block)
+    })
   })
   .run(function($rootScope) {
     $rootScope.socket = io()
