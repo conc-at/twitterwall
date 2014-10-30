@@ -15,6 +15,14 @@ var server = http.Server(app)
 var io = require('socket.io')(server)
 var T = new Twit(config.twitter.auth)
 
+
+function throttleDelay(tweet, callback) {
+  setTimeout(
+    callback.bind(null, tweet),
+    config.twitter.throttle
+  )
+}
+
 debug('resolving screen names')
 T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (err, data, response) {
   if(err) return debug('error: %s', err)
@@ -27,10 +35,11 @@ T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (e
   var hashStream = T.stream('statuses/filter', searchConf.hashtags)
   var userStream = T.stream('statuses/filter', searchConf.users)
   var stream = lib.twitter.unify([hashStream, userStream])
+  var tweetBuffer = require('parallizer').Parallel(1)
 
   stream.on('tweet', function (tweet) {
     debug('tweet: %s', tweet.text)
-    io.emit('tweet', tweet)
+    tweetBuffer.sadd(throttleDelay, tweet, io.emit.bind(io, 'tweet'))
   })
 
   stream.on('error', function (err) {
