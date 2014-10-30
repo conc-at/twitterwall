@@ -20,8 +20,8 @@ module.exports = {
     showNext: 5*60*1000
   },
   admin: {
-    username: 'admin',
-    password: '123456',
+    username: process.env.ADMIN_USER,
+    password: process.env.ADMIN_PASSWORD,
     blocked: []
   },
   sponsoring: {

@@ -50,7 +50,6 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
     $rootScope.socket = io()
   })
   .constant('config', require('../config'))
-  // TODO don't expose admin
 
 app.constant('moment', moment)
 ngTimeRelative(app)
