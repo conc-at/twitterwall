@@ -20,6 +20,7 @@ module.exports = {
     showNext: 5*60*1000
   },
   admin: {
+    enableAPI: true,
     username: process.env.ADMIN_USER,
     password: process.env.ADMIN_PASSWORD,
     blocked: []
