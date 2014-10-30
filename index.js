@@ -17,13 +17,6 @@ var T = new Twit(config.twitter.auth)
 lib.middlewares(app)
 lib.routes(app)
 
-function throttleDelay(tweet, callback) {
-  setTimeout(
-    callback.bind(null, tweet),
-    config.twitter.throttle
-  )
-}
-
 var blocked = config.admin.blocked || []
 
 debug('resolving screen names')
@@ -43,7 +36,7 @@ T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (e
   stream.on('tweet', function (tweet) {
     debug('tweet: %s', tweet.text)
     if(lib.twitter.block(tweet, blocked)) return debug('tweet blocked')
-    tweetBuffer.sadd(throttleDelay, tweet, io.emit.bind(io, 'tweet'))
+    tweetBuffer.sadd(lib.utils.throttleDelay, tweet, io.emit.bind(io, 'tweet'))
   })
 
   stream.on('error', function (err) {
