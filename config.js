@@ -14,7 +14,7 @@ module.exports = {
       consumer_secret: process.env.CONSUMER_SECRET
     }
   },
-  lanyrd:{
+  lanyrd: {
     year: '2014',
     id: 'barcamp-salzburg-october',
     showNext: 5*60*1000
@@ -24,8 +24,8 @@ module.exports = {
     password: '123456',
     blocked: []
   },
-  sponsoring:{
-    sonsors: {
+  sponsoring: {
+    sponsors: {
       'Fachhochschule Salzburg GmbH': {
         image: 'https://barcamp-sbg.at/images/logos/fh@2x.jpg'
       }
