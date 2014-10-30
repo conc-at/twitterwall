@@ -12,12 +12,31 @@ function avatar(url) {
 }
 
 var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
-  .controller('SiteCtrl', function($scope, $sanitize, $http) {
+  .controller('SiteCtrl', function($scope, $sanitize, $http, $interval) {
     $scope.config = require('../config')
 
     $scope.tweets = []
 
     $scope.lanyrd = []
+
+    var $preloader = angular.element(document.querySelector('.preloader'))
+
+    $interval(function() {
+      if (!$scope.tweets) {
+        return
+      }
+      var src = $scope.tweets[0].user.profile_banner_url
+      if (!src) {
+        return
+      }
+      src += '/web_retina'
+      $preloader
+        .on('load', function() {
+          $preloader.off('load')
+          $scope.background = src
+        })
+        .attr('src', src)
+    }, 5000)
 
     $http.get('/schedule').then(function(res) {
       var dataSet
