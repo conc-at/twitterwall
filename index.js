@@ -14,10 +14,10 @@ var server = http.Server(app)
 var io = require('socket.io')(server)
 var T = new Twit(config.twitter.auth)
 
+app.blockedTweets = config.admin.blocked || []
+
 lib.middlewares(app)
 lib.routes(app)
-
-var blocked = config.admin.blocked || []
 
 debug('resolving screen names')
 T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (err, data, response) {
@@ -35,7 +35,7 @@ T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (e
 
   stream.on('tweet', function (tweet) {
     debug('tweet: %s', tweet.text)
-    if(lib.twitter.block(tweet, blocked)) return debug('tweet blocked')
+    if(lib.twitter.block(tweet, app.blockedTweets)) return debug('tweet blocked')
     tweetBuffer.sadd(lib.utils.throttleDelay, tweet, io.emit.bind(io, 'tweet'))
   })
 
