@@ -2,6 +2,6 @@
 
 ## Licence
 
-The MIT License (MIT)
+The [MIT License (MIT)](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2014 Stephan Bönnemann (@boennemann) & Christoph Witzko (@christophwitzko)
+Copyright © 2014 [Stephan Bönnemann](https://twitter.com/boennemann) & [Christoph Witzko](https://twitter.com/christophwitzko)
