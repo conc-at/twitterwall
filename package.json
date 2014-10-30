@@ -38,6 +38,7 @@
     "debug": "^2.1.0",
     "emojize": "^0.2.0",
     "express": "^4.10.0",
+    "lanyrd": "^0.2.1",
     "less": "^1.7.5",
     "parallizer": "^1.0.4",
     "socket.io": "^1.2.0",
