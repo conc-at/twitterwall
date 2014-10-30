@@ -6,6 +6,7 @@ var path = require('path')
 var debug = require('debug')('twitterwall')
 var express = require('express')
 var bodyParser = require('body-parser')
+var basicAuth = require('basic-auth-connect')
 var Twit = require('twit')
 
 var lib = require('./lib')
@@ -66,6 +67,10 @@ io.of('/test').on('connection', function(socket){
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'build')))
+
+app.post('/tweet', basicAuth(config.admin.username, config.admin.password), function(req, res){
+  res.send('OK')
+})
 
 var port = process.env.PORT || 8000
 
