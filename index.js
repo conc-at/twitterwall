@@ -4,7 +4,6 @@ var http = require('http')
 
 var debug = require('debug')('twitterwall')
 var express = require('express')
-var basicAuth = require('basic-auth-connect')
 var Twit = require('twit')
 var Lanyrd = require('lanyrd')
 
@@ -17,6 +16,7 @@ var io = require('socket.io')(server)
 var T = new Twit(config.twitter.auth)
 
 lib.middlewares(app)
+lib.routes(app)
 
 function throttleDelay(tweet, callback) {
   setTimeout(
@@ -65,12 +65,6 @@ T.get('users/lookup', {screen_name: config.twitter.users.join(',')}, function (e
 var testTweets = require('./data/tweets.json')
 io.of('/test').on('connection', function(socket){
   lib.twitter.stagger(socket, testTweets.statuses)
-})
-
-app.post('/tweet', basicAuth(config.admin.username, config.admin.password), function(req, res){
-  debug('sending fake tweet...')
-  //req.body
-  res.send('OK')
 })
 
 app.post('/block', basicAuth(config.admin.username, config.admin.password), function(req, res){
