@@ -36,7 +36,7 @@ app.twitter.get('users/lookup', {screen_name: app.configjs.twitter.users.join(',
   stream.on('tweet', function (tweet) {
     debug('tweet: %s', tweet.text)
     if(lib.twitter.block(tweet, app.configjs.admin.blocked)) return debug('tweet blocked')
-    tweetBuffer.sadd(lib.utils.throttleDelay, tweet, app.socketio.emit.bind(io, 'tweet'))
+    tweetBuffer.sadd(lib.utils.throttleDelay(app.configjs.twitter.throttle), tweet, app.socketio.emit.bind(io, 'tweet'))
   })
 
   stream.on('error', function (err) {
