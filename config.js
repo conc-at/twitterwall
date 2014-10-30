@@ -21,7 +21,7 @@ module.exports = {
   admin: {
     username: 'admin',
     password: '123456',
-    blocked: ['💩']
+    blocked: []
   },
   sponsoring:{
     sonsors: {
