@@ -12,8 +12,8 @@ function avatar(url) {
 }
 
 var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
-  .controller('SiteCtrl', function($scope, $sanitize, config) {
-    $scope.title = config.title
+  .controller('SiteCtrl', function($scope, $sanitize) {
+    $scope.config = require('../config')
 
     $scope.tweets = []
 
@@ -49,7 +49,6 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
   .run(function($rootScope) {
     $rootScope.socket = io()
   })
-  .constant('config', require('../config'))
 
 app.constant('moment', moment)
 ngTimeRelative(app)

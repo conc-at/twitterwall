@@ -1,6 +1,6 @@
 <html ng-app="twitterwall" ng-controller="SiteCtrl">
 <head>
-  <title>{{title || 'Twitterwall'}}</title>
+  <title>{{config.title || 'Twitterwall'}}</title>
   <link rel="stylesheet" type="text/css" href="bundle.css">
 </head>
 <body>
@@ -8,6 +8,9 @@
     'background-image': 'url('+tweets[0].user.profile_banner_url+'/web_retina)'
   }">
     <div class="schedule">
+      <h1>
+        <a>{{config.hashtag}}</a>
+      </h1>
     </div>
     <ul class="tweets">
       <li ng-repeat="tweet in tweets track by tweet.id" class="tweet tweet-animation">

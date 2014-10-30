@@ -2,6 +2,7 @@
 /*jshint camelcase: false */
 module.exports = {
   title: '.concat() 2015 Twitterwall',
+  hashtag: '#concat15',
   port: process.env.PORT || 8000,
   twitter: {
     throttle: 1000,
