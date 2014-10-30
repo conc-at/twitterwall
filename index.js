@@ -73,12 +73,6 @@ app.post('/block', basicAuth(config.admin.username, config.admin.password), func
   res.send('OK')
 })
 
-app.get('/sponsoring', function(req, res){
-  debug('sending sponsoring...')
-  res.send(config.sponsoring)
-})
-
-
 app.get('/schedule', function(req, res){
   debug('sending schedule...')
   Lanyrd.schedule(config.lanyrd.id, config.lanyrd.year, function(err, resp, schedule){
