@@ -47,6 +47,7 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
   .run(function($rootScope) {
     $rootScope.socket = io()
   })
+  .constant('config', require('../config'))
 
 app.constant('moment', moment)
 ngTimeRelative(app)
