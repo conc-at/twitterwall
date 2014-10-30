@@ -13,6 +13,10 @@ module.exports = {
       consumer_secret: process.env.CONSUMER_SECRET
     }
   },
+  lanyrd:{
+    year: '2014',
+    id: 'barcamp-salzburg-october'
+  },
   admin: {
     username: 'admin',
     password: '123456'

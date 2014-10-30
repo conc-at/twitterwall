@@ -8,6 +8,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var basicAuth = require('basic-auth-connect')
 var Twit = require('twit')
+var Lanyrd = require('lanyrd')
 
 var lib = require('./lib')
 var config = require('./config')
@@ -74,6 +75,14 @@ app.post('/tweet', basicAuth(config.admin.username, config.admin.password), func
 
 app.get('/sponsoring', function(req, res){
   res.send(config.sponsoring)
+})
+
+
+app.get('/schedule', function(req, res){
+  Lanyrd.schedule(config.lanyrd.id, config.lanyrd.year, function(err, resp, schedule){
+    if(err) return res.send({error: err})
+    res.send(schedule)
+  })
 })
 
 var port = process.env.PORT || 8000
