@@ -17,7 +17,7 @@ app.twitter = new Twit(app.configjs.twitter.auth)
 app.configjs.admin.blocked = app.configjs.admin.blocked || []
 
 lib.middlewares(app)
-lib.routes(app)
+lib.routes(app, lib)
 lib.socketio(app, lib)
 
 var port = process.env.PORT || 8000
