@@ -1,5 +1,9 @@
 # .concat() 2015 Twitterwall
 
+## Run Twitterwall
+
+    $ npm install && npm start
+
 ## Licence
 
 The [MIT License (MIT)](http://opensource.org/licenses/MIT)
