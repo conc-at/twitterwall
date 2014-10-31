@@ -1,6 +1,7 @@
 # ignore dependencies
 node_modules/
 
+*.httpclient
 .env
 
 # ignore generated files
