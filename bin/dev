@@ -1,0 +1,7 @@
+#!/bin/bash
+
+npm run kill-dev
+npm run build
+
+# browser-sync start --files "./build/*" --proxy localhost:5000 &
+npm run watch

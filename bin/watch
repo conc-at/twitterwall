@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+function cleanup {
+  echo "Killing watch tasks"
+  npm run kill-dev
+}
+trap cleanup EXIT
+
+npm run watch-css &
+npm run watch-html &
+npm run watch-js
