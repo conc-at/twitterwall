@@ -1,5 +1,6 @@
 'use strict'
 
 module.exports = function(app) {
-  require('./TweetCtrl.js')(app)
+  require('./ScheduleCtrl')(app)
+  require('./TweetCtrl')(app)
 }
