@@ -1,8 +1,8 @@
 'use strict'
 
 module.exports = function(app) {
-  app.controller('ScheduleCtrl', function($scope, $http) {
-    $scope.lanyrd = []
+  app.controller('ScheduleCtrl', function($scope, $http, $interval) {
+    var todayData
 
     $http.get('/schedule').then(function(res) {
       var dataSet
@@ -18,7 +18,28 @@ module.exports = function(app) {
         dataSet = res.data[Object.keys(res.data)[0]]
       }
 
-      $scope.lanyrd = dataSet
+      todayData = dataSet
+      $scope.nextUp = dataSet[0]
     })
+
+    // in minutes
+    var forerun = 10
+
+    $interval(function() {
+      var now = new Date()
+      var compare = new Date(todayData[0].date)
+      compare.setMinutes(now.getMinutes())
+      compare.setHours(now.getHours())
+
+      for (var session in todayData) {
+        session = todayData[session]
+        var time = new Date(session.start_time)
+
+        if (((time - compare) / 1000 * 60 * 60) > forerun) {
+          $scope.nextUp = session
+          break
+        }
+      }
+    }, 5000)
   })
 }

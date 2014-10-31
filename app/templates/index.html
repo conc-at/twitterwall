@@ -9,14 +9,19 @@
     'background-image': 'url(' + background + ')'
   }">
     <div class="schedule" ng-controller="ScheduleCtrl">
-      <h1>
-        <a>{{config.hashtag}}</a>
-      </h1>
-      <ul>
-        <li ng-repeat="session in lanyrd">
-          {{session.title}}
-        </li>
-      </ul>
+      <div class="general">
+        <h1>
+          <a>{{config.hashtag}}</a>
+        </h1>
+      </div>
+      <div class="nextup">
+        <span>{{nextUp.title}}</span>
+        <span>{{nextUp.subtitle}}</span>
+        <div ng-repeat="speaker in nextUp.speakers">
+          <img ng-src="{{speaker.image}}">
+          <span>{{speaker.title}}</span>
+        </div>
+      </div>
     </div>
     <ul class="tweets" ng-controller="TweetCtrl">
       <li ng-repeat="tweet in tweets track by tweet.id" class="tweet tweet-animation">
