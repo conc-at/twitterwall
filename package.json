@@ -6,11 +6,13 @@
   "scripts": {
     "clean": "rm -rf build && mkdir build",
     "build-js": "browserify app/index.js > build/bundle.js",
-    "build-css": "lessc app/index.less > build/bundle.css",
-    "build-html": "cp app/*.html build/",
+    "build-css": "lessc app/styles/index.less > build/bundle.css",
+    "build-html": "cp app/templates/*.html build/",
     "copy": "cp node_modules/emojize/sprite/emoji.png build/",
     "build": "npm run clean && npm run copy && npm run build-js && npm run build-css && npm run build-html",
-    "watch": "watchify app/index.js -o build/bundle.js -dv",
+    "watch-js": "watchify app/index.js -o build/bundle.js -dv",
+    "watch-css": "watch 'npm run build-css' app/styles",
+    "watch-html": "watch 'npm run build-html' app/templates",
     "start": "npm run build && nf start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -52,6 +54,7 @@
     "socket.io": "^1.2.0",
     "twit": "^1.1.18",
     "twitter-text": "^1.9.4",
+    "watch": "^0.13.0",
     "watchify": "^2.1.0"
   },
   "devDependencies": {
