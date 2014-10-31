@@ -58,6 +58,36 @@ a, a:hover, a:visited, a:active {
   height: 50%;
 }
 
+.nextup {
+  padding: 20px;
+  background-color: fade(#333333, 80%);
+
+  h2 {
+    font-size: 56px;
+  }
+
+  h3 {
+    font-size: 28px;
+  }
+}
+
+.speakers {
+  > div {
+    float: left;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  img {
+    display: block;
+    margin: 10px auto;
+    border-radius: 100%;
+    border: 4px solid #f7f7f7;
+  }
+}
+
 .tweets {
   overflow: scroll;
   flex-grow: 1;
@@ -86,7 +116,7 @@ a, a:hover, a:visited, a:active {
   .info {
     margin-left: 113px;
     padding: 20px;
-    border-top: 1px solid #333333;
+    border-bottom: 1px solid #333333;
 
     img {
       margin: 20px 0;
