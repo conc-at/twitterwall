@@ -20,6 +20,7 @@ var exports = module.exports = function(app) {
 
     socket.on('tweet', function(tweet){
       if (tweet.retweeted_status || tweet.possibly_sensitive) {
+        console.log('blocked!')
         return
       }
 
