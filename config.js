@@ -24,7 +24,9 @@ module.exports = {
     enableAPI: true,
     username: process.env.ADMIN_USER,
     password: process.env.ADMIN_PASSWORD,
-    blocked: []
+    blocked: [],
+    blockRetweets: false,
+    blockPossiblySensitive: true
   },
   sponsoring: {
     sponsors: {

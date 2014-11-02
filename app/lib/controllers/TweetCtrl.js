@@ -7,7 +7,7 @@ var link = require('twitter-text')
 var emoji = require('emojize')
 
 var exports = module.exports = function(app) {
-  app.controller('TweetCtrl', function($scope, $rootScope, $interval, socket) {
+  app.controller('TweetCtrl', function($scope, $rootScope, $interval, socket, config) {
     $scope.tweets = []
 
     $scope.linkTweet = function(tweet) {
@@ -19,7 +19,7 @@ var exports = module.exports = function(app) {
     }
 
     socket.on('tweet', function(tweet){
-      if (tweet.retweeted_status || tweet.possibly_sensitive) {
+      if ((config.admin.blockRetweets && tweet.retweeted_status) || (config.admin.blockPossiblySensitive && tweet.possibly_sensitive)) {
         console.log('blocked!')
         return
       }
