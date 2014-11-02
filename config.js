@@ -3,6 +3,7 @@
 module.exports = {
   title: '.concat() 2015 Twitterwall',
   hashtag: '#concat15',
+  logo: 'https://rawgit.com/conc-at/concat/source/app/images/logos/concat_logo.svg',
   port: process.env.PORT || 8000,
   twitter: {
     throttle: 1000,
