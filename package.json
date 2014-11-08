@@ -56,6 +56,7 @@
     "ng-time-relative": "0.6.0",
     "parallizer": "^1.0.4",
     "socket.io": "^1.2.0",
+    "twemoji": "^1.1.0",
     "twit": "^1.1.18",
     "twitter-text": "^1.9.4",
     "watch": "^0.13.0",
