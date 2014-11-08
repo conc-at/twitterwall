@@ -7,7 +7,7 @@ module.exports = {
   port: process.env.PORT || 8000,
   twitter: {
     throttle: 1000,
-    tracks: ['#yolo', '#javascript', '#concat', '#concat15', '#concat2015'],
+    tracks: ['💩', '#yolo', '#javascript', '#concat', '#concat15', '#concat2015'],
     users: ['conc_at', 'hackernewsbot', 'zurvollenstunde'],
     auth: {
       access_token: process.env.ACCESS_TOKEN,
