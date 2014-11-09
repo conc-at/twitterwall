@@ -4,14 +4,14 @@
 
 var angular = require('angular')
 var link = require('twitter-text')
-var emoji = require('emojize')
+var twemoji = require('twemoji')
 
 var exports = module.exports = function(app) {
   app.controller('TweetCtrl', function($scope, $rootScope, $interval, socket, config) {
     $scope.tweets = []
 
     $scope.linkTweet = function(tweet) {
-      return emoji.emojize(link.autoLink(tweet.text, tweet.entities.urls))
+      return twemoji.parse(link.autoLink(tweet.text, tweet.entities.urls), {size: 72})
     }
 
     $scope.linkMedia = function(media) {
