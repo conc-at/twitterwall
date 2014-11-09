@@ -27,7 +27,7 @@
     </div>
     <ul class="tweets" ng-controller="TweetCtrl">
       <li ng-repeat="tweet in tweets track by tweet.id" class="tweet tweet-animation">
-        <img
+        <img class="user-img"
           ng-src="{{tweet.user.profile_image_url_https}}"
           ng-style="{
             'border': '4px solid #'+ tweet.user.profile_background_color
@@ -38,7 +38,7 @@
           <time relative datetime="{{tweet.created_at}}"></time>
           <div class="text" ng-bind-html="linkTweet(tweet)"></div>
           <div class="media" ng-repeat="media in tweet.entities.media">
-            <img ng-src="{{linkMedia(media)}}">
+            <img class="media-img" ng-src="{{linkMedia(media)}}">
           </div>
         </div>
       </li>
