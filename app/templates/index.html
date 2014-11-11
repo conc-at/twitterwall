@@ -40,6 +40,11 @@
           <div class="media" ng-repeat="media in tweet.entities.media">
             <img class="media-img" ng-src="{{linkMedia(media)}}">
           </div>
+          <div class="media gif" ng-repeat="url in tweet.entities.urls" ng-if="url.expanded_url_mp4">
+            <video class="media-img" autoplay loop>
+              <source ng-src="{{url.expanded_url_mp4}}" type="video/mp4">
+            </video>
+          </div>
         </div>
       </li>
     </ul>

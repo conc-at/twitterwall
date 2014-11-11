@@ -53,6 +53,7 @@
     "moment": "^2.8.3",
     "ng-time-relative": "0.6.0",
     "parallizer": "^1.0.4",
+    "request": "^2.47.0",
     "socket.io": "^1.2.0",
     "twemoji": "^1.1.0",
     "twit": "^1.1.18",
