@@ -11,7 +11,7 @@ var exports = module.exports = function(app) {
     $scope.tweets = []
 
     $scope.linkTweet = function(tweet) {
-      return twemoji.parse(link.autoLink(tweet.text, tweet.entities.urls), {size: 72})
+      return twemoji.parse(link.autoLink(tweet.text, {urlEntities: tweet.entities.urls}), {size: 72})
     }
 
     $scope.linkMedia = function(media) {
