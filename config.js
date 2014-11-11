@@ -6,8 +6,8 @@ module.exports = {
   logo: 'https://rawgit.com/conc-at/concat/source/app/images/logos/concat_logo.svg',
   port: process.env.PORT || 8000,
   twitter: {
-    throttle: 1000,
-    tracks: ['#javascript', '#concat', '#concat15', '#concat2015'],
+    throttle: 100,
+    tracks: ['#vine', '#javascript', '#concat', '#concat15', '#concat2015'],
     users: ['conc_at', 'hackernewsbot', 'zurvollenstunde'],
     auth: {
       access_token: process.env.ACCESS_TOKEN,
@@ -27,7 +27,7 @@ module.exports = {
     password: process.env.ADMIN_PASSWORD,
     blocked: [],
     blockRetweets: false,
-    blockPossiblySensitive: true
+    blockPossiblySensitive: false
   },
   sponsoring: {
     sponsors: {
