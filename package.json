@@ -58,6 +58,7 @@
     "twemoji": "^1.1.0",
     "twit": "^1.1.18",
     "twitter-text": "^1.9.4",
+    "url-join": "0.0.1",
     "watch": "^0.13.0",
     "watchify": "^2.1.0"
   },
