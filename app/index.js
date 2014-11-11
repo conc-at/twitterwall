@@ -12,8 +12,10 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
   .constant('moment', moment)
   .config(function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
-        'self',
-        'https://pbs.twimg.com/**'
+      'self',
+      'https://v.cdn.vine.co/**',
+      'https://mtc.cdn.vine.co/**',
+      'https://pbs.twimg.com/**'
     ]);
   })
 
