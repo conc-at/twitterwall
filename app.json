@@ -1,0 +1,9 @@
+{
+  "name": "twitterwall",
+  "description": ".concat() twitterwall",
+  "repository": "https://github.com/conc-at/twitterwall",
+  "logo": "https://rawgit.com/conc-at/concat/source/app/images/logos/concat_logo.svg",
+  "keywords": ["twitterwall", "realtime", "conference"],
+  "addons": [],
+  "env": {}
+}
