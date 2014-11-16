@@ -3,7 +3,7 @@
 module.exports = {
   title: '.concat() 2015 Twitterwall',
   hashtag: '#concat15',
-  logo: 'https://rawgit.com/conc-at/concat/source/app/images/logos/concat_logo.svg',
+  logo: '/logos/concat_logo.svg',
   port: process.env.PORT || 8000,
   twitter: {
     throttle: 100,
@@ -32,7 +32,7 @@ module.exports = {
   sponsoring: {
     sponsors: [{
       name: 'Fachhochschule Salzburg GmbH',
-      image: 'https://barcamp-sbg.at/images/logos/fh@2x.jpg'
+      image: '/logos/FHS.jpg'
     }],
     displayDuration: 5000
   }
