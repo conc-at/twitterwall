@@ -30,11 +30,10 @@ module.exports = {
     blockPossiblySensitive: false
   },
   sponsoring: {
-    sponsors: {
-      'Fachhochschule Salzburg GmbH': {
-        image: 'https://barcamp-sbg.at/images/logos/fh@2x.jpg'
-      }
-    },
+    sponsors: [{
+      name: 'Fachhochschule Salzburg GmbH',
+      image: 'https://barcamp-sbg.at/images/logos/fh@2x.jpg'
+    }],
     displayDuration: 5000
   }
 }
