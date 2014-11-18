@@ -9,15 +9,8 @@ module.exports = {
   port: e.PORT || 8000,
   twitter: {
     throttle: 100,
-    tracks: e.HASHTAGS.split(',') || [
-      '#javascript',
-      '#concat',
-      '#concat15',
-      '#concat2015'
-    ],
-    users: e.USERS.split(',') || [
-      'conc_at'
-    ],
+    tracks: (e.HASHTAGS || '#javascript,#concat,#concat15,#concat2015').split(','),
+    users: (e.USERS || 'conc_at').split(','),
     auth: {
       access_token: e.ACCESS_TOKEN,
       access_token_secret: e.ACCESS_TOKEN_SECRET,
@@ -34,7 +27,7 @@ module.exports = {
     enableAPI: e.ADMIN_USER && e.ADMIN_PASSWORD,
     username: e.ADMIN_USER,
     password: e.ADMIN_PASSWORD,
-    blocked: e.BLOCKED_USERS.split(',') || [],
+    blocked: (e.BLOCKED_USERS || '').split(','),
     blockRetweets: true,
     blockPossiblySensitive: true
   },
