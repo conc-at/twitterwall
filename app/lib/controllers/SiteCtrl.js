@@ -10,7 +10,7 @@ module.exports = function(app) {
 
     socket.on('flash', function(flash){
       if(!flash.message) return $flash.removeClass('active')
-      $scope.message = twemoji.parse(flash.message, {size: 72})
+      $scope.message = twemoji.parse(flash.message, function(icon) {return 'https://twemoji.maxcdn.com/svg/' + icon + '.svg'})
       $scope.$apply()
       $flash.addClass('active')
       if(flash.duration === 0) return

@@ -11,7 +11,7 @@ var exports = module.exports = function(app) {
     $scope.tweets = []
 
     $scope.linkTweet = function(tweet) {
-      return twemoji.parse(link.autoLink(tweet.text, {urlEntities: tweet.entities.urls}), {size: 72})
+      return twemoji.parse(link.autoLink(tweet.text, {urlEntities: tweet.entities.urls}), function(icon) {return 'https://twemoji.maxcdn.com/svg/' + icon + '.svg'})
     }
 
     $scope.linkMedia = function(media) {
@@ -19,10 +19,8 @@ var exports = module.exports = function(app) {
     }
 
     socket.on('tweet', function(tweet){
-      if ((config.admin.blockRetweets && tweet.retweeted_status) || (config.admin.blockPossiblySensitive && tweet.possibly_sensitive)) {
-        console.log('blocked!')
-        return
-      }
+      if(config.admin.blockRetweets && tweet.retweeted_status) return console.log('blocked retweet!')
+      if(config.admin.blockPossiblySensitive && tweet.possibly_sensitive) return console.log('blocked possibly sensitive!')
 
       tweet.user.profile_image_url = exports.avatar(tweet.user.profile_image_url)
       tweet.user.profile_image_url_https = exports.avatar(tweet.user.profile_image_url_https)
