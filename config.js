@@ -1,33 +1,42 @@
 'use strict'
+
+var e = process.env
+
 /*jshint camelcase: false */
 module.exports = {
-  title: '.concat() 2015 Twitterwall',
-  hashtag: '#concat15',
-  logo: '/logos/concat_logo.svg',
-  port: process.env.PORT || 8000,
+  title: e.TITLE || '.concat() 2015 Twitterwall',
+  hashtag: e.HASHTAG || '#concat15',
+  port: e.PORT || 8000,
   twitter: {
     throttle: 100,
-    tracks: ['#javascript', '#concat', '#concat15', '#concat2015'],
-    users: ['conc_at', 'hackernewsbot', 'zurvollenstunde'],
+    tracks: e.HASHTAGS.split(',') || [
+      '#javascript',
+      '#concat',
+      '#concat15',
+      '#concat2015'
+    ],
+    users: e.USERS.split(',') || [
+      'conc_at'
+    ],
     auth: {
-      access_token: process.env.ACCESS_TOKEN,
-      access_token_secret: process.env.ACCESS_TOKEN_SECRET,
-      consumer_key: process.env.CONSUMER_KEY,
-      consumer_secret: process.env.CONSUMER_SECRET
+      access_token: e.ACCESS_TOKEN,
+      access_token_secret: e.ACCESS_TOKEN_SECRET,
+      consumer_key: e.CONSUMER_KEY,
+      consumer_secret: e.CONSUMER_SECRET
     }
   },
   lanyrd: {
-    year: '2014',
-    id: 'barcamp-salzburg-october',
+    year: e.LANYRD_YEAR || '2014',
+    id: e.LANYRD_ID || 'barcamp-salzburg-october',
     showNext: 5*60*1000
   },
   admin: {
-    enableAPI: true,
-    username: process.env.ADMIN_USER,
-    password: process.env.ADMIN_PASSWORD,
-    blocked: [],
-    blockRetweets: false,
-    blockPossiblySensitive: false
+    enableAPI: e.ADMIN_USER && e.ADMIN_PASSWORD,
+    username: e.ADMIN_USER,
+    password: e.ADMIN_PASSWORD,
+    blocked: e.BLOCKED_USERS.split(',') || [],
+    blockRetweets: true,
+    blockPossiblySensitive: true
   },
   sponsors: [{
     name: 'University of Applied Sciences',

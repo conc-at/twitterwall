@@ -2,8 +2,61 @@
   "name": "twitterwall",
   "description": ".concat() twitterwall",
   "repository": "https://github.com/conc-at/twitterwall",
-  "logo": "https://rawgit.com/conc-at/concat/source/app/images/logos/concat_logo.svg",
+  "logo": "https://rawgit.com/conc-at/twitterwall/master/app/images/concat.svg",
+  "success_url": "/",
   "keywords": ["twitterwall", "realtime", "conference"],
-  "addons": [],
-  "env": {}
+  "env": {
+    "TITLE": {
+      "description": "The title of your twitterwall",
+      "required": true
+    },
+    "HASHTAG": {
+      "description": "The main hashtag you want to encourage people to tweet with",
+      "required": true
+    },
+    "HASHTAGS": {
+      "description": "A comma seperated list of hashtags you want to display",
+      "required": true
+    },
+    "USERS": {
+      "description": "A comma seperated list of users whose tweets you want to display",
+      "required": true,
+      "value": ""
+    },
+    "ACCESS_TOKEN": {
+      "description": "Go to https://apps.twitter.com/ an get yourself some tokens",
+      "required": true
+    },
+    "ACCESS_TOKEN_SECRET": {
+      "description": "See ACCESS_TOKEN",
+      "required": true
+    },
+    "CONSUMER_KEY": {
+      "description": "See ACCESS_TOKEN",
+      "required": true
+    },
+    "CONSUMER_SECRET": {
+      "description": "See ACCESS_TOKEN",
+      "required": true
+    },
+    "LANYRD_YEAR": {
+      "description": "Go to your lanyrd event page and enter the year that is in the URL",
+      "required": true
+    },
+    "LANYRD_ID": {
+      "description": "Go to your lanyrd event page and enter the event name/id that is in the URL",
+      "required": true
+    },
+    "ADMIN_USER": {
+      "description": "A username for the admin API used by https://github.com/conc-at/twitterwall-cli",
+      "value": "admin"
+    },
+    "ADMIN_PASSWORD": {
+      "description": "A password for the admin API used by https://github.com/conc-at/twitterwall-cli",
+      "generator": "secret"
+    },
+    "BLOCKED_USERS": {
+      "description": "A comma seperated list of users you want to block from the wall"
+    }
+  }
 }
