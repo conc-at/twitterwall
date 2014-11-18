@@ -29,11 +29,13 @@ module.exports = {
     blockRetweets: false,
     blockPossiblySensitive: false
   },
-  sponsoring: {
-    sponsors: [{
-      name: 'Fachhochschule Salzburg GmbH',
-      image: '/logos/FHS.jpg'
-    }],
-    displayDuration: 5000
-  }
+  sponsors: [{
+    name: 'University of Applied Sciences',
+    image: '/images/fhs.jpg',
+    duration: 1000
+  },{
+    name: '.concat() 2015',
+    image: '/images/concat.svg',
+    duration: 3000
+  }]
 }
