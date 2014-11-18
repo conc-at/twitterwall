@@ -3,7 +3,7 @@
 var twemoji = require('twemoji')
 
 module.exports = function(app) {
-  app.directive('flashMessage', function($animate, socket) {
+  app.directive('flashMessage', function($animate, $timeout, socket) {
     return {
       scope: {},
       template: '<span ng-bind-html="message"></span>',
@@ -17,6 +17,10 @@ module.exports = function(app) {
           $animate.removeClass(element, 'flash-message')
         }
 
+        function cancel() {
+          if (timeout) $timeout.cancel(timeout)
+        }
+
         function svgify(icon) {
           return 'https://twemoji.maxcdn.com/svg/' + icon + '.svg'
         }
@@ -25,13 +29,12 @@ module.exports = function(app) {
         socket.on('flash', function(flash){
           if (!flash.message) {
             hide()
-            if (timeout) timeout.cancel()
-            return
+            return cancel()
           }
           scope.message = twemoji.parse(flash.message, svgify)
           scope.$apply()
           show()
-          if(timeout) timeout.cancel()
+          cancel()
           if(flash.duration === 0) return
           timeout = $timeout(hide, flash.duration)
         })
