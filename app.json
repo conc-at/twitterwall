@@ -52,8 +52,7 @@
       "value": "admin"
     },
     "ADMIN_PASSWORD": {
-      "description": "A password for the admin API used by https://github.com/conc-at/twitterwall-cli",
-      "generator": "secret"
+      "description": "A password for the admin API used by https://github.com/conc-at/twitterwall-cli"
     },
     "BLOCKED_USERS": {
       "description": "A comma seperated list of users you want to block from the wall"
