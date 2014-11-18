@@ -7,14 +7,19 @@ module.exports = function(app) {
     $scope.config = config
 
     var $flash = angular.element(document.querySelector('#flash'))
-
+    var timeout = null;
     socket.on('flash', function(flash){
-      if(!flash.message) return $flash.removeClass('active')
+      if(!flash.message) {
+        $flash.removeClass('active')
+        if(timeout) timeout.cancel()
+        return
+      }
       $scope.message = twemoji.parse(flash.message, function(icon) {return 'https://twemoji.maxcdn.com/svg/' + icon + '.svg'})
       $scope.$apply()
       $flash.addClass('active')
+      if(timeout) timeout.cancel()
       if(flash.duration === 0) return
-      $timeout(function() {
+      timeout = $timeout(function() {
         $flash.removeClass('active')
       }, flash.duration)
     })
