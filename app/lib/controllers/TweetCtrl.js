@@ -35,7 +35,14 @@ var exports = module.exports = function(app) {
     })
 
     socket.on('block', function(block){
-      console.log(block)
+      angular.forEach($scope.tweets, function(tweet, idx) {
+        if (!RegExp(block, 'i').test(tweet.text)) {
+          return
+        }
+        console.log('removed tweet containing', block)
+        $scope.tweets.splice(idx, 1)
+        $scope.$apply()
+      })
     })
 
     var $preloader = angular.element(document.querySelector('.preloader'))
