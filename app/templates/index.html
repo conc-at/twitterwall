@@ -13,6 +13,9 @@
         <h1>
           <a>{{config.hashtag}}</a>
         </h1>
+        <div class="sponsor" ng-controller="SponsorCtrl">
+          <img ng-src="{{sponsor.image}}">
+        </div>
       </div>
       <div class="nextup">
         <h2>{{nextUp.title}}</h2>
@@ -24,8 +27,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="sponsor" ng-controller="SponsorCtrl">
     </div>
     <ul class="tweets" ng-controller="TweetCtrl">
       <li ng-repeat="tweet in tweets track by tweet.id" class="tweet tweet-animation">

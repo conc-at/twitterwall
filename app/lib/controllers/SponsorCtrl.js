@@ -1,11 +1,15 @@
 'use strict'
 
 module.exports = function(app) {
-  app.controller('SponsorCtrl', function($scope, $interval) {
-    var sponsors = $scope.config.sponsoring.sponsors
-    $interval(function() {
-      console.log(sponsors[0])
+  app.controller('SponsorCtrl', function($scope, $timeout) {
+    var sponsors = $scope.config.sponsors
+
+    function swap() {
       sponsors.unshift(sponsors.pop())
-    }, $scope.config.sponsoring.displayDuration)
+      $scope.sponsor = sponsors[0]
+      $timeout(swap, $scope.sponsor.duration || 1e4)
+    }
+
+    swap()
   })
 }
