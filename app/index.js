@@ -20,7 +20,6 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
 
 angular.injector(['ng']).invoke(function($http) {
   $http.get('/config').then(function(res) {
-    console.log(res.data)
     app.constant('config', res.data)
     angular.bootstrap(document, ['twitterwall'])
   })
