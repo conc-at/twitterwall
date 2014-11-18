@@ -55,9 +55,7 @@
       </li>
     </ul>
   </section>
-  <section id="flash">
-    {{message}}
-  </section>
+  <section id="flash" ng-bind-html="message"></section>
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="bundle.js"></script>
 </body>
