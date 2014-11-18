@@ -44,23 +44,6 @@ var exports = module.exports = function(app) {
         $scope.$apply()
       })
     })
-
-    var $preloader = angular.element(document.querySelector('.preloader'))
-
-    $interval(function() {
-      if (!$scope.tweets) {
-        return
-      }
-      if(!$scope.tweets || !$scope.tweets[0] || !$scope.tweets[0].user || !$scope.tweets[0].user.profile_banner_url) return
-      var src = $scope.tweets[0].user.profile_banner_url
-      src += '/web_retina'
-      $preloader
-        .on('load', function() {
-          $preloader.off('load')
-          $rootScope.background = src
-        })
-        .attr('src', src)
-    }, 5000)
   })
 }
 

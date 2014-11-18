@@ -4,7 +4,6 @@
   <link rel="stylesheet" type="text/css" href="bundle.css">
 </head>
 <body>
-  <img class="preloader">
   <section id="main" ng-style="{
     'background-image': 'url(' + background + ')'
   }">
@@ -29,6 +28,7 @@
       </div>
     </div>
     <ul class="tweets" ng-controller="TweetCtrl">
+      <img class="preloader">
       <li ng-repeat="tweet in tweets track by tweet.id" class="tweet tweet-animation">
         <img class="user-img"
           ng-src="{{tweet.user.profile_image_url_https}}"

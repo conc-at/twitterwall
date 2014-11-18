@@ -2,4 +2,5 @@
 
 module.exports = function(app) {
   require('./flash-message')(app)
+  require('./preloader')(app)
 }
