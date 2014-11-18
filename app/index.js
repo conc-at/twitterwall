@@ -27,3 +27,4 @@ angular.injector(['ng']).invoke(function($http) {
 
 ngTimeRelative(app)
 lib.controllers(app)
+lib.directives(app)
