@@ -7,7 +7,7 @@ require('angular-animate')
 var lib = require('./lib')
 
 var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
-  .constant('config', require('../config'))
+  .constant('config', {})
   .constant('socket', io())
   .constant('moment', moment)
   .config(function($sceDelegateProvider) {
