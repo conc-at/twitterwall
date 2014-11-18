@@ -1,6 +1,6 @@
 <html ng-controller="SiteCtrl" ng-cloak>
 <head>
-  <title>{{config.title || 'Twitterwall'}}</title>
+  <title ng-bind="config.title || 'Twitterwall'">Twitterwall</title>
   <link rel="stylesheet" type="text/css" href="bundle.css">
 </head>
 <body>
