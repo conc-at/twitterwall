@@ -7,55 +7,49 @@
   "keywords": ["twitterwall", "realtime", "conference"],
   "env": {
     "TITLE": {
-      "description": "The title of your twitterwall",
-      "required": true
-    },
+      "description": "The title of your twitterwall"
+     },
     "HASHTAG": {
-      "description": "The main hashtag you want to encourage people to tweet with",
-      "required": true
-    },
+      "description": "The main hashtag you want to encourage people to tweet with"
+     },
     "HASHTAGS": {
-      "description": "A comma seperated list of hashtags you want to display",
-      "required": true
-    },
+      "description": "A comma seperated list of hashtags you want to display"
+     },
     "USERS": {
       "description": "A comma seperated list of users whose tweets you want to display",
-      "required": true,
       "value": ""
     },
     "ACCESS_TOKEN": {
-      "description": "Go to https://apps.twitter.com/ an get yourself some tokens",
-      "required": true
-    },
+      "description": "Go to https://apps.twitter.com/ an get yourself some tokens"
+     },
     "ACCESS_TOKEN_SECRET": {
-      "description": "See ACCESS_TOKEN",
-      "required": true
-    },
+      "description": "See ACCESS_TOKEN"
+     },
     "CONSUMER_KEY": {
-      "description": "See ACCESS_TOKEN",
-      "required": true
-    },
+      "description": "See ACCESS_TOKEN"
+     },
     "CONSUMER_SECRET": {
-      "description": "See ACCESS_TOKEN",
-      "required": true
-    },
+      "description": "See ACCESS_TOKEN"
+     },
     "LANYRD_YEAR": {
-      "description": "Go to your lanyrd event page and enter the year that is in the URL",
-      "required": true
-    },
+      "description": "Go to your lanyrd event page and enter the year that is in the URL"
+     },
     "LANYRD_ID": {
-      "description": "Go to your lanyrd event page and enter the event name/id that is in the URL",
-      "required": true
-    },
+      "description": "Go to your lanyrd event page and enter the event name/id that is in the URL"
+     },
     "ADMIN_USER": {
       "description": "A username for the admin API used by https://github.com/conc-at/twitterwall-cli",
-      "value": "admin"
+      "value": "admin",
+      "required": false
     },
     "ADMIN_PASSWORD": {
-      "description": "A password for the admin API used by https://github.com/conc-at/twitterwall-cli"
+      "description": "A password for the admin API used by https://github.com/conc-at/twitterwall-cli",
+      "required": false
+
     },
     "BLOCKED_USERS": {
-      "description": "A comma seperated list of users you want to block from the wall"
+      "description": "A comma seperated list of users you want to block from the wall",
+      "required": false
     }
   }
 }
