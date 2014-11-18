@@ -25,10 +25,9 @@ body {
 }
 
 flash-message {
-  display: none;
-  &.active {
-    display: flex;
-  }
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
   justify-content: center;
   align-content: center;
   flex-direction: column;
@@ -41,6 +40,19 @@ flash-message {
   color: #f7f7f7;
   text-align: center;
   font-size: 80px;
+}
+
+.flash-message-add, .flash-message-remove {
+  transition: opacity ease 300ms;
+}
+
+.flash-message,
+.flash-message-add.flash-message-add-active {
+  opacity: 1;
+}
+
+.flash-message-remove.flash-message-remove-active {
+  opacity: 0;
 }
 
 .preloader {

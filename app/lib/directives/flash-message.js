@@ -3,18 +3,18 @@
 var twemoji = require('twemoji')
 
 module.exports = function(app) {
-  app.directive('flashMessage', function(socket) {
+  app.directive('flashMessage', function($animate, socket) {
     return {
       scope: {},
       template: '<span ng-bind-html="message"></span>',
       link: function(scope, element) {
 
         function show() {
-          element.addClass('active')
+          $animate.addClass(element, 'flash-message')
         }
 
         function hide() {
-          element.removeClass('active')
+          $animate.removeClass(element, 'flash-message')
         }
 
         function svgify(icon) {
