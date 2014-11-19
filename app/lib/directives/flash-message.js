@@ -1,5 +1,6 @@
 'use strict'
 
+var markdown = require('markdown').markdown
 var twemoji = require('twemoji')
 
 module.exports = function(app) {
@@ -30,6 +31,10 @@ module.exports = function(app) {
           if (!flash.message) {
             hide()
             return cancel()
+          }
+          if (flash.markdown) {
+            console.log('detected markdown')
+            flash.message = markdown.toHTML(flash.message)
           }
           scope.message = twemoji.parse(flash.message, svgify)
           scope.$apply()
