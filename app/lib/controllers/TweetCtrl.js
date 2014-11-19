@@ -36,10 +36,13 @@ var exports = module.exports = function(app) {
 
     socket.on('block', function(block){
       angular.forEach($scope.tweets, function(tweet, idx) {
-        if (!RegExp(block, 'i').test(tweet.text)) {
-          return
+        if (tweet.text.toLowerCase().indexOf(block.toLowerCase()) > -1) {
+          console.log('removed tweet containing', block)
         }
-        console.log('removed tweet containing', block)
+        else if(block.charAt(0) === '@' && tweet.user.screen_name.toLowerCase() === block.substr(1).toLowerCase()) {
+          console.log('removed tweet from', block)
+        }
+        else return
         $scope.tweets.splice(idx, 1)
         $scope.$apply()
       })
