@@ -12,9 +12,9 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
   .config(function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
-      'https://v.cdn.vine.co/**',
-      'https://mtc.cdn.vine.co/**',
-      'https://pbs.twimg.com/**'
+      'https://*.cdn.vine.co/**',
+      'https://pbs.twimg.com/**',
+      'https://*.akamaihd.net/**'
     ]);
   })
 
