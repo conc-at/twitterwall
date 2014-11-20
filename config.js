@@ -8,9 +8,10 @@ module.exports = {
   hashtag: e.HASHTAG || '#concat15',
   port: e.PORT || 8000,
   twitter: {
-    throttle: 100,
-    tracks: (e.HASHTAGS || '#nodejs,#javascript,#concat,#concat15,#concat2015').split(','),
+    throttle: 1000,
+    tracks: (e.HASHTAGS || '#instagram,#nodejs,#javascript,#concat,#concat15,#concat2015').split(','),
     users: (e.USERS || 'conc_at').split(','),
+    tweetHistory: false,
     auth: {
       access_token: e.ACCESS_TOKEN,
       access_token_secret: e.ACCESS_TOKEN_SECRET,
