@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://rawgit.com/conc-at/twitterwall/master/app/images/concat.svg" alt=".concat() Logo">
+</p>
+
 # .concat() 2015 Twitterwall
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 ## Run Twitterwall
