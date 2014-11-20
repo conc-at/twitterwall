@@ -11,7 +11,7 @@ module.exports = {
     throttle: 1000,
     tracks: (e.HASHTAGS || '#nodejs,#javascript,#concat,#concat15,#concat2015').split(','),
     users: (e.USERS || 'conc_at').split(','),
-    tweetHistory: false,
+    tweetHistory: true,
     auth: {
       access_token: e.ACCESS_TOKEN,
       access_token_secret: e.ACCESS_TOKEN_SECRET,
