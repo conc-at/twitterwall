@@ -3,12 +3,7 @@
 module.exports = function(app) {
   app.directive('preloader', function($rootScope, $interval) {
     function link(scope, element) {
-      console.log('such linked')
       $interval(function() {
-        console.log('swagger')
-        console.log(scope)
-        console.log(scope.tweets)
-
         if (!scope.tweets) {
           return
         }
