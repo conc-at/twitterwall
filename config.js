@@ -28,6 +28,7 @@ module.exports = {
     enableAPI: e.ADMIN_USER && e.ADMIN_PASSWORD,
     username: e.ADMIN_USER,
     password: e.ADMIN_PASSWORD,
+    corsWhitelist: [],
     blocked: e.BLOCKED_USERS ? e.BLOCKED_USERS.split(',') : [],
     blockRetweets: true,
     blockPossiblySensitive: true
