@@ -11,6 +11,7 @@ module.exports = function(app) {
       link: function(scope, element) {
         var doHide = false
         var doneTs = 0
+        var currentDisplayTs = '0'
 
         function show() {
           $animate.addClass(element, 'flash-message')
@@ -28,8 +29,11 @@ module.exports = function(app) {
             doHide = false
           }
           else{
-            var sl = (doneTs - cTs)/1000
-            console.log(sl.toFixed(0))
+            var sl = ((doneTs - cTs)/1000).toFixed(0)
+            if(currentDisplayTs !== sl) {
+              currentDisplayTs = sl
+              console.log(currentDisplayTs)
+            }
           }
         }
 
