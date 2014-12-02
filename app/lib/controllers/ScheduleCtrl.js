@@ -26,6 +26,8 @@ module.exports = function(app) {
     var forerun = 10
 
     $interval(function() {
+      // TODO: handle new room format
+      return
       var now = new Date()
       var compare = new Date(todayData[0].date)
       compare.setMinutes(now.getMinutes())

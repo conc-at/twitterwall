@@ -11,7 +11,7 @@ module.exports = function(app) {
       link: function(scope, element) {
         var doHide = false
         var doneTs = 0
-        var currentDisplayTs = '0'
+        var timeLeft = 0
 
         function show() {
           $animate.addClass(element, 'flash-message')
@@ -19,6 +19,11 @@ module.exports = function(app) {
 
         function hide() {
           $animate.removeClass(element, 'flash-message')
+        }
+
+        function updateTime(){
+          if(timeLeft === 0) return console.log('hide')
+          console.log(timeLeft)
         }
 
         function tick(){
@@ -29,10 +34,10 @@ module.exports = function(app) {
             doHide = false
           }
           else{
-            var sl = ((doneTs - cTs)/1000).toFixed(0)
-            if(currentDisplayTs !== sl) {
-              currentDisplayTs = sl
-              console.log(currentDisplayTs)
+            var tl = Math.round((doneTs - cTs)/1000)
+            if(timeLeft !== tl){
+              timeLeft = tl
+              updateTime()
             }
           }
         }
@@ -45,19 +50,22 @@ module.exports = function(app) {
 
         socket.on('flash', function(flash){
           doHide = false
+          timeLeft = 0
           if (!flash.message) return hide()
           if (flash.markdown) {
             console.log('detected markdown')
             flash.message = markdown.toHTML(flash.message)
           }
           scope.message = twemoji.parse(flash.message, svgify)
+          if(flash.duration){
+            timeLeft = Math.round(flash.duration/1000)
+            doneTs = (new Date()).getTime() + flash.duration
+            doHide = true
+          }
           scope.$apply()
+          updateTime()
           show()
-          if(!flash.duration) return
-          doneTs = (new Date()).getTime() + flash.duration
-          doHide = true
         })
-
       }
     }
   })
