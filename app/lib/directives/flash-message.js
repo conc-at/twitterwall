@@ -7,11 +7,12 @@ module.exports = function(app) {
   app.directive('flashMessage', function($animate, $interval, socket) {
     return {
       scope: {},
-      template: '<span ng-bind-html="message"></span>',
+      template: '<span ng-bind-html="message"></span><span class="timer">10</span>',
       link: function(scope, element) {
         var doHide = false
         var doneTs = 0
         var timeLeft = 0
+        var timerEl = document.querySelector('.timer')
 
         function show() {
           $animate.addClass(element, 'flash-message')
@@ -23,7 +24,7 @@ module.exports = function(app) {
 
         function updateTime(){
           if(timeLeft === 0) return console.log('hide')
-          console.log(timeLeft)
+          timerEl.innerText = timeLeft
         }
 
         function tick(){
