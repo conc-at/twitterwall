@@ -1,5 +1,6 @@
 'use strict'
 
+var angular = require('angular')
 var markdown = require('markdown').markdown
 var twemoji = require('twemoji')
 
@@ -12,7 +13,7 @@ module.exports = function(app) {
         var doHide = false
         var doneTs = 0
         var timeLeft = 0
-        var timerEl = document.querySelector('.timer')
+        var timerEl = angular.element(document.querySelector('.timer'))
 
         function show() {
           $animate.addClass(element, 'flash-message')
@@ -22,9 +23,16 @@ module.exports = function(app) {
           $animate.removeClass(element, 'flash-message')
         }
 
-        function updateTime(){
-          if(timeLeft === 0) return console.log('hide')
-          timerEl.innerText = timeLeft
+        function showTimer(){
+          timerEl.addClass('show')
+        }
+
+        function hideTimer(){
+          timerEl.removeClass('show')
+        }
+
+        function updateTimer(){
+          timerEl.text(timeLeft)
         }
 
         function tick(){
@@ -38,7 +46,7 @@ module.exports = function(app) {
             var tl = Math.round((doneTs - cTs)/1000)
             if(timeLeft !== tl){
               timeLeft = tl
-              updateTime()
+              updateTimer()
             }
           }
         }
@@ -52,6 +60,7 @@ module.exports = function(app) {
         socket.on('flash', function(flash){
           doHide = false
           timeLeft = 0
+          hideTimer()
           if (!flash.message) return hide()
           if (flash.markdown) {
             console.log('detected markdown')
@@ -62,9 +71,10 @@ module.exports = function(app) {
             timeLeft = Math.round(flash.duration/1000)
             doneTs = (new Date()).getTime() + flash.duration
             doHide = true
+            showTimer()
+            updateTimer()
           }
           scope.$apply()
-          updateTime()
           show()
         })
       }
