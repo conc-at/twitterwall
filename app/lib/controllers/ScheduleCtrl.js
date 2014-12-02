@@ -5,21 +5,18 @@ module.exports = function(app) {
     var todayData
 
     $http.get('/schedule').then(function(res) {
-      var dataSet
-      var today = (new Date()).toISOString().slice(0,10)
+      var dataSet = {}
+      var today = '2014-10-24' || (new Date()).toISOString().substr(0, 10)
 
-      Object.keys(res.data).forEach(function(date) {
-        if (date === today) {
-          dataSet = res.data[date]
-        }
+      Object.keys(res.data).forEach(function(room) {
+        Object.keys(res.data[room]).forEach(function(date){
+          if(date === today) dataSet[room] = res.data[room][date]
+        })
       })
 
-      if (!dataSet) {
-        dataSet = res.data[Object.keys(res.data)[0]]
-      }
-
       todayData = dataSet
-      $scope.nextUp = dataSet[0]
+      console.log(todayData)
+      //$scope.nextUp = dataSet[0]
     })
 
     // in minutes
