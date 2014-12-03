@@ -4,6 +4,14 @@ module.exports = function(app) {
   app.controller('ScheduleCtrl', function($scope, $http, $interval) {
     var todayData
 
+    function getCurrentTalks(){
+      // TODO
+      var currentTalks = {}
+      Object.keys(todayData).forEach(function(room) {
+        currentTalks[room] = todayData[room].shift()
+      })
+      return currentTalks
+    }
     $http.get('/schedule').then(function(res) {
       var dataSet = {}
       var today = '2014-10-24' || (new Date()).toISOString().substr(0, 10)
@@ -15,8 +23,8 @@ module.exports = function(app) {
       })
 
       todayData = dataSet
-      console.log(todayData)
-      //$scope.nextUp = dataSet[0]
+      $scope.nextUp = getCurrentTalks()
+      console.log($scope.nextUp)
     })
 
     // in minutes
