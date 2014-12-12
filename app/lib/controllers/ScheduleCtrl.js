@@ -1,9 +1,12 @@
 'use strict'
 
+var randomColor = require('randomcolor')
+
 module.exports = function(app) {
   app.controller('ScheduleCtrl', function($scope, $http, $interval) {
     var today = '2014-10-24' || (new Date()).toISOString().substr(0, 10)
     var forerun = 10 // in minutes
+    var roomColors = {}
     var todayData
 
     function getNextTalks(){
@@ -17,6 +20,9 @@ module.exports = function(app) {
           var time = new Date(v.start_time)
           if (((time - compare) / 1000 * 60 * 60) > forerun) {
             nextTalks[room] = v
+            nextTalks[room].style = {
+              spacename: {color: roomColors[room]}
+            }
             return true
           }
         })
@@ -36,7 +42,10 @@ module.exports = function(app) {
       var dataSet = {}
       Object.keys(res.data).forEach(function(room) {
         Object.keys(res.data[room]).forEach(function(date){
-          if(date === today) dataSet[room] = res.data[room][date]
+          if(date === today) {
+            dataSet[room] = res.data[room][date]
+            roomColors[room] = randomColor()
+          }
         })
       })
       todayData = dataSet

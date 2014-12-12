@@ -57,6 +57,7 @@
     "moment": "^2.8.3",
     "ng-time-relative": "^0.7.0",
     "parallizer": "^1.1.0",
+    "randomcolor": "^0.1.1",
     "request": "^2.49.0",
     "socket.io": "^1.2.0",
     "twemoji": "^1.2.0",
