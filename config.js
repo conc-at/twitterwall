@@ -22,9 +22,8 @@ module.exports = {
   lanyrd: {
     year: e.LANYRD_YEAR || '2014',
     id: e.LANYRD_ID || 'barcamp-salzburg-october',
-    showNext: 5*60*1000,
+    showNext: 5*1000,
     roomColors: {
-      '_': '#000000',
       '017': '#FF3434',
       '018': '#34FF34'
     }

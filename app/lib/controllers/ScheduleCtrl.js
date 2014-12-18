@@ -3,10 +3,10 @@
 var randomColor = require('randomcolor')
 
 module.exports = function(app) {
-  app.controller('ScheduleCtrl', function($scope, $http, $interval) {
+  app.controller('ScheduleCtrl', function($scope, $http, $interval, config) {
     var today = '2014-10-24' || (new Date()).toISOString().substr(0, 10)
     var forerun = 10 // in minutes
-    var roomColors = {}
+    var roomColors = config.lanyrd.roomColors
     var todayData
 
     function getNextTalks(){
@@ -44,7 +44,7 @@ module.exports = function(app) {
         Object.keys(res.data[room]).forEach(function(date){
           if(date === today) {
             dataSet[room] = res.data[room][date]
-            roomColors[room] = randomColor()
+            if(!roomColors[room]) roomColors[room] = randomColor()
           }
         })
       })
@@ -62,6 +62,6 @@ module.exports = function(app) {
         if(nextTalks[0]) $scope.nextUp = nextTalks[0]
         currentIndex = 1
       }
-    }, 5000)
+    }, config.lanyrd.showNext)
   })
 }
