@@ -9,7 +9,7 @@ module.exports = {
   port: e.PORT || 8000,
   twitter: {
     throttle: 1000,
-    tracks: (e.HASHTAGS || '#nodejs,#javascript,#concat,#concat15,#concat2015').split(','),
+    tracks: (e.HASHTAGS || '#concat,#concat15,#concat2015').split(','),
     users: (e.USERS || 'conc_at').split(','),
     tweetHistory: true,
     auth: {
