@@ -4,7 +4,7 @@ var randomColor = require('randomcolor')
 
 module.exports = function(app) {
   app.controller('ScheduleCtrl', function($scope, $http, $interval, config) {
-    var today = '2014-10-24' || (new Date()).toISOString().substr(0, 10)
+    var today = config.lanyrd.overwriteDate || (new Date()).toISOString().substr(0, 10)
     var forerun = 10 // in minutes
     var roomColors = config.lanyrd.roomColors
     var todayData

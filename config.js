@@ -20,12 +20,13 @@ module.exports = {
     }
   },
   lanyrd: {
-    year: e.LANYRD_YEAR || '2014',
-    id: e.LANYRD_ID || 'barcamp-salzburg-october',
+    overwriteDate: '2015-03-07', //for debuging
+    year: e.LANYRD_YEAR || '2015',
+    id: e.LANYRD_ID || 'concat',
     showNext: 5*1000,
     roomColors: {
-      '017': '#FF3434',
-      '018': '#34FF34'
+      'Audimax': '#FF3434',
+      '110': '#34FF34'
     }
   },
   admin: {
