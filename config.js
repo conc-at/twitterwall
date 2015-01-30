@@ -1,8 +1,9 @@
 'use strict'
 
+/*jshint camelcase: false */
+
 var e = process.env
 
-/*jshint camelcase: false */
 module.exports = {
   title: e.TITLE || '.concat() 2015 Twitterwall',
   hashtag: e.HASHTAG || '#concat15',
