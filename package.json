@@ -17,7 +17,7 @@
     "dev": "./bin/dev",
     "kill-dev": "ps ax | grep watch | awk '{print $1}' | xargs kill",
     "start": "npm run build && nf start",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "standard",
     "install": "npm run build"
   },
   "repository": {
@@ -60,6 +60,7 @@
     "randomcolor": "^0.1.1",
     "request": "^2.51.0",
     "socket.io": "^1.2.0",
+    "socket.io-client": "^1.3.2",
     "twemoji": "^1.2.0",
     "twit": "^1.1.18",
     "twitter-text": "^1.9.4",
@@ -68,7 +69,8 @@
     "watchify": "^2.2.1"
   },
   "devDependencies": {
-    "foreman": "^1.2.0"
+    "foreman": "^1.2.0",
+    "standard": "*"
   },
   "browser": {
     "angular": "./node_modules/angular/angular.js",

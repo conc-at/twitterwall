@@ -5,7 +5,7 @@ module.exports = function(app) {
     return {
       restrict: 'E',
       templateUrl: 'tweet.html',
-      link: angular.noop
+      link: function() {}
     }
   })
 }

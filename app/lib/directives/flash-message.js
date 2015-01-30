@@ -15,49 +15,48 @@ module.exports = function(app) {
         var timeLeft = 0
         var timerEl = angular.element(document.querySelector('.timer'))
 
-        function show() {
+        function show () {
           $animate.addClass(element, 'flash-message')
         }
 
-        function hide() {
+        function hide () {
           $animate.removeClass(element, 'flash-message')
         }
 
-        function showTimer(){
+        function showTimer () {
           timerEl.addClass('show')
         }
 
-        function hideTimer(){
+        function hideTimer () {
           timerEl.removeClass('show')
         }
 
-        function updateTimer(){
+        function updateTimer () {
           timerEl.text(timeLeft)
         }
 
-        function tick(){
-          if(!doHide) return
+        function tick () {
+          if (!doHide) return
           var cTs = (new Date()).getTime()
-          if(cTs >= doneTs){
+          if (cTs >= doneTs) {
             hide()
             doHide = false
-          }
-          else{
-            var tl = Math.round((doneTs - cTs)/1000)
-            if(timeLeft !== tl){
+          } else {
+            var tl = Math.round((doneTs - cTs) / 1000)
+            if (timeLeft !== tl) {
               timeLeft = tl
               updateTimer()
             }
           }
         }
 
-        function svgify(icon) {
+        function svgify (icon) {
           return 'https://twemoji.maxcdn.com/svg/' + icon + '.svg'
         }
 
         $interval(tick, 100)
 
-        socket.on('flash', function(flash){
+        socket.on('flash', function(flash) {
           doHide = false
           timeLeft = 0
           hideTimer()
@@ -67,8 +66,8 @@ module.exports = function(app) {
             flash.message = markdown.toHTML(flash.message)
           }
           scope.message = twemoji.parse(flash.message, svgify)
-          if(flash.duration){
-            timeLeft = Math.round(flash.duration/1000)
+          if (flash.duration) {
+            timeLeft = Math.round(flash.duration / 1000)
             doneTs = (new Date()).getTime() + flash.duration
             doHide = true
             showTimer()

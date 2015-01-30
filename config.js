@@ -20,10 +20,10 @@ module.exports = {
     }
   },
   lanyrd: {
-    overwriteDate: '2015-03-07', //for debuging
+    overwriteDate: '2015-03-07', // for debuging
     year: e.LANYRD_YEAR || '2015',
     id: e.LANYRD_ID || 'concat',
-    showNext: 5*1000,
+    showNext: 5000,
     roomColors: {
       'Audimax': '#FF3434',
       '110': '#34FF34',
@@ -43,7 +43,7 @@ module.exports = {
     name: 'University of Applied Sciences',
     image: '/images/fhs.jpg',
     duration: 10000
-  },{
+  }, {
     name: '.concat() 2015',
     image: '/images/concat.svg',
     duration: 30000

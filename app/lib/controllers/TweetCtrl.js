@@ -38,16 +38,16 @@ var exports = module.exports = function(app) {
 }
 
 exports.avatar = function(url) {
-  return url.replace('_normal','_bigger')
+  return url.replace('_normal', '_bigger')
 }
 
 exports.block = function(tweet, block) {
-  if (RegExp(block, 'i').test(tweet.text)) {
+  if (new RegExp(block, 'i').test(tweet.text)) {
     console.log('removed tweet containing', block)
     return true
   }
 
-  if (block[0] === '@' && RegExp(block.substr(1), 'i').test(tweet.user.screen_name)) {
+  if (block[0] === '@' && new RegExp(block.substr(1), 'i').test(tweet.user.screen_name)) {
     console.log('removed tweet from', block)
     return true
   }

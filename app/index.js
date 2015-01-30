@@ -16,7 +16,7 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
       'https://*.cdn.vine.co/**',
       'https://pbs.twimg.com/**',
       'https://*.akamaihd.net/**'
-    ]);
+    ])
   })
 
 angular.injector(['ng']).invoke(function($http) {
