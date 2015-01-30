@@ -1,4 +1,5 @@
 var angular = require('angular')
+var io = require('socket.io-client')
 var ngTimeRelative = require('ng-time-relative')
 var moment = require('ng-time-relative/node_modules/moment')
 require('angular-sanitize')
