@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": ".concat() twitterwall",
   "main": "index.js",
+  "engines": {
+    "iojs": "^1.0.0"
+  },
   "scripts": {
     "build": "./bin/build",
     "build-css": "lessc app/styles/index.less > build/bundle.css",
