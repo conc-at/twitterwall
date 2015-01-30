@@ -26,7 +26,8 @@ module.exports = {
     showNext: 5*1000,
     roomColors: {
       'Audimax': '#FF3434',
-      '110': '#34FF34'
+      '110': '#34FF34',
+      '017': '#3434FF'
     }
   },
   admin: {
