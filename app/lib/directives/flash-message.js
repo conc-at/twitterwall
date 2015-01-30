@@ -4,6 +4,7 @@ var angular = require('angular')
 var markdown = require('markdown').markdown
 var twemoji = require('twemoji')
 
+/* global document */
 module.exports = function(app) {
   app.directive('flashMessage', function($animate, $interval, socket) {
     return {
