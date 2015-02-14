@@ -28,14 +28,14 @@ module.exports = {
     roomColors: {
       'Audimax': '#FF3434',
       '110': '#34FF34',
-      '017': '#3434FF'
+      '017': '#3434FF',
+      'Lounge': '#FF34FF'
     }
   },
   admin: {
     enableAPI: e.ADMIN_USER && e.ADMIN_PASSWORD,
     username: e.ADMIN_USER,
     password: e.ADMIN_PASSWORD,
-    corsWhitelist: [],
     blocked: e.BLOCKED_USERS ? e.BLOCKED_USERS.split(',') : [],
     blockRetweets: true,
     blockPossiblySensitive: true
