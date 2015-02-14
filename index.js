@@ -2,6 +2,7 @@
 
 var lib = require('./lib')
 
+/* eslint new-cap:0 */
 var app = require('express')()
 var server = require('http').Server(app)
 
