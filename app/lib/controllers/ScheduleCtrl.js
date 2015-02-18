@@ -9,6 +9,15 @@ module.exports = function (app) {
     var roomColors = config.lanyrd.roomColors
     var todayData
 
+    $scope.eventdayify = function (input) {
+      var now = new Date()
+      var date = new Date(input)
+      date.setFullYear(now.getFullYear())
+      date.setMonth(now.getMonth())
+      date.setDate(now.getDate())
+      return date.toISOString()
+    }
+
     function getNextTalks () {
       var nextTalks = {}
       var now = new Date()

@@ -115,28 +115,34 @@ a, a:hover, a:visited, a:active {
   background-color: fade(#333333, 80%);
 
   h2 {
-    font-size: 56px;
+    font-size: 42px;
   }
 
   h3 {
     font-size: 28px;
+    font-weight: normal;
   }
 }
 
 .speakers {
-  > div {
-    float: left;
-    margin-right: 20px;
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
+  width: 100%;
   img {
+    float: left;
     display: block;
-    margin: 10px auto;
+    margin: 10px 0;
     border-radius: 100%;
     border: 4px solid #f7f7f7;
+  }
+
+  .speaker {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    div {
+      font-weight: bold;
+      margin-left: 20px;
+      font-size: 32px;
+    }
   }
 }
 
