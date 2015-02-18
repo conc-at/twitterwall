@@ -10,7 +10,7 @@ var lib = require('./lib')
 var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
   .constant('socket', io())
   .constant('moment', moment)
-  .config(function($sceDelegateProvider) {
+  .config(function ($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
       'https://*.cdn.vine.co/**',
@@ -19,8 +19,8 @@ var app = angular.module('twitterwall', ['ngSanitize', 'ngAnimate'])
     ])
   })
 
-angular.injector(['ng']).invoke(function($http) {
-  $http.get('/config').then(function(res) {
+angular.injector(['ng']).invoke(function ($http) {
+  $http.get('/config').then(function (res) {
     app.constant('config', res.data)
     angular.bootstrap(document, ['twitterwall'])
   })

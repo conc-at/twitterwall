@@ -6,14 +6,14 @@ var angular = require('angular')
 var link = require('twitter-text')
 var twemoji = require('twemoji')
 
-var exports = module.exports = function(app) {
-  app.controller('TweetCtrl', function($scope, $rootScope, $interval, socket, config) {
+var exports = module.exports = function (app) {
+  app.controller('TweetCtrl', function ($scope, $rootScope, $interval, socket, config) {
     $scope.tweets = []
     var self = this
 
     self.normalize = exports.normalize.bind(null, config.admin)
 
-    socket.on('tweet', function(tweet) {
+    socket.on('tweet', function (tweet) {
       tweet = self.normalize(tweet)
 
       if (!tweet) return
@@ -27,8 +27,8 @@ var exports = module.exports = function(app) {
       $scope.$apply()
     })
 
-    socket.on('block', function(block) {
-      angular.forEach($scope.tweets, function(tweet, idx) {
+    socket.on('block', function (block) {
+      angular.forEach($scope.tweets, function (tweet, idx) {
         if (!exports.block(tweet, block)) return
         $scope.tweets.splice(idx, 1)
         $scope.$apply()
@@ -37,11 +37,11 @@ var exports = module.exports = function(app) {
   })
 }
 
-exports.avatar = function(url) {
+exports.avatar = function (url) {
   return url.replace('_normal', '_bigger')
 }
 
-exports.block = function(tweet, block) {
+exports.block = function (tweet, block) {
   if (new RegExp(block, 'i').test(tweet.text)) {
     console.log('removed tweet containing', block)
     return true
@@ -55,15 +55,15 @@ exports.block = function(tweet, block) {
   return false
 }
 
-exports.emojify = function(text, entities) {
+exports.emojify = function (text, entities) {
   return twemoji.parse(link.autoLink(text, {
     urlEntities: entities.urls
-  }), function(icon) {
+  }), function (icon) {
     return 'https://twemoji.maxcdn.com/svg/' + icon + '.svg'
   })
 }
 
-exports.normalize = function(blocks, tweet) {
+exports.normalize = function (blocks, tweet) {
   if (blocks.blockRetweets && tweet.retweeted_status)
     return console.log('blocked retweet!')
 
@@ -74,7 +74,7 @@ exports.normalize = function(blocks, tweet) {
   tweet.user.profile_image_url_https = exports.avatar(tweet.user.profile_image_url_https)
 
   if (tweet.entities.media) {
-    tweet.entities.media.map(function(medium) {
+    tweet.entities.media.map(function (medium) {
       medium.media_url_https = decodeURI(medium.media_url_https)
       return medium
     })

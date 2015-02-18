@@ -1,7 +1,7 @@
 'use strict'
 
-module.exports = function(app) {
-  app.controller('SponsorCtrl', function($scope, $timeout) {
+module.exports = function (app) {
+  app.controller('SponsorCtrl', function ($scope, $timeout) {
     var sponsors = $scope.config.sponsors
 
     function swap () {

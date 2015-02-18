@@ -11,6 +11,6 @@ lib.middlewares(app, lib)
 lib.routes(app, lib)
 lib.socketio(app, lib)
 
-server.listen(app.configjs.port, function() {
+server.listen(app.configjs.port, function () {
   app.debug('Listening on %d', app.configjs.port)
 })

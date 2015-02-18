@@ -1,9 +1,9 @@
 'use strict'
 
-module.exports = function(app) {
-  app.directive('preloader', function($rootScope, $interval) {
+module.exports = function (app) {
+  app.directive('preloader', function ($rootScope, $interval) {
     function link (scope, element) {
-      $interval(function() {
+      $interval(function () {
         if (!scope.tweets) {
           return
         }
@@ -11,7 +11,7 @@ module.exports = function(app) {
         var src = scope.tweets[0].user.profile_banner_url
         src += '/web_retina'
         element
-          .on('load', function() {
+          .on('load', function () {
             element.off('load')
             $rootScope.background = src
           })

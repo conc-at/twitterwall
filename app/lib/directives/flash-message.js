@@ -6,12 +6,12 @@ var angular = require('angular')
 var markdown = require('markdown').markdown
 var twemoji = require('twemoji')
 
-module.exports = function(app) {
-  app.directive('flashMessage', function($animate, $interval, socket) {
+module.exports = function (app) {
+  app.directive('flashMessage', function ($animate, $interval, socket) {
     return {
       scope: {},
       template: '<span ng-bind-html="message"></span><span class="timer">10</span>',
-      link: function(scope, element) {
+      link: function (scope, element) {
         var doHide = false
         var doneTs = 0
         var timeLeft = 0
@@ -58,7 +58,7 @@ module.exports = function(app) {
 
         $interval(tick, 100)
 
-        socket.on('flash', function(flash) {
+        socket.on('flash', function (flash) {
           doHide = false
           timeLeft = 0
           hideTimer()

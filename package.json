@@ -75,6 +75,11 @@
     "foreman": "^1.2.0",
     "standard": "*"
   },
+  "standard": {
+    "ignore": [
+      "build/**"
+    ]
+  },
   "browser": {
     "angular": "./node_modules/angular/angular.js",
     "angular-sanitize": "./node_modules/angular-sanitize/angular-sanitize.js",
