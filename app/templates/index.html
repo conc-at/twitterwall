@@ -8,27 +8,30 @@
     'background-image': 'url(' + background + ')'
   }">
     <div class="schedule" ng-controller="ScheduleCtrl">
-      <div class="nextup">
-        <h2>{{nextUp.title}}</h2>
-        <div class="speakers">
-          <div class="speaker" ng-repeat="speaker in nextUp.speakers">
-            <img ng-src="{{speaker.image}}">
-            <div>{{speaker.title}}</div>
-          </div>
-        </div>
-        <h3>
-          <time relative datetime="{{eventdayify(nextUp.start_time)}}"></time>
-          in the <strong ng-style="nextUp.style.spacename">{{nextUp.space_name}}</strong>.
-          (<span>{{eventdayify(nextUp.start_time) | date:'shortTime'}}</span>)
-        </h3>
-      </div>
       <div class="general">
         <h1>
           <a>{{config.hashtag}}</a>
         </h1>
-        <div class="sponsor" ng-controller="SponsorCtrl">
-          <img ng-src="{{sponsor.image}}">
+      </div>
+      <div class="nextup">
+        <div ng-if="nextUp">
+          <h2>{{nextUp.title}}</h2>
+          <div class="speakers">
+            <div class="speaker" ng-repeat="speaker in nextUp.speakers">
+              <img ng-src="{{speaker.image}}">
+              <div>{{speaker.title}}</div>
+            </div>
+          </div>
+          <h3>
+            <time relative datetime="{{eventdayify(nextUp.start_time)}}"></time>
+            in the <strong ng-style="nextUp.style.spacename">{{nextUp.space_name}}</strong>
+            <br>
+            <span>{{eventdayify(nextUp.start_time) | date:'shortTime'}}</span>
+          </h3>
         </div>
+      </div>
+      <div class="sponsor" ng-controller="SponsorCtrl">
+        <img ng-src="{{sponsor.image}}">
       </div>
     </div>
     <ul class="tweets" ng-controller="TweetCtrl">

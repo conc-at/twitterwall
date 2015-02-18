@@ -40,12 +40,60 @@ module.exports = {
     blockPossiblySensitive: true
   },
   sponsors: [{
-    name: 'University of Applied Sciences',
-    image: '/images/fhs.jpg',
+    image: 'https://conc.at/images/logos/zalando@2x.png',
+    name: 'Zalando Technology',
+    duration: 20000
+  }, {
+    image: 'https://conc.at/images/logos/pusher@2x.png',
+    name: 'Pusher',
+    duration: 20000
+  }, {
+    image: 'https://conc.at/images/logos/braintree@2x.png',
+    name: 'Braintree Payments',
     duration: 10000
   }, {
-    name: '.concat() 2015',
-    image: '/images/concat.svg',
-    duration: 30000
+    image: 'https://conc.at/images/logos/aws@2x.png',
+    name: 'Amazon Web Services',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/travis@2x.png',
+    name: 'Travis CI',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/hoodie@2x.png',
+    name: 'Hoodie',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/mandrill@2x.png',
+    name: 'Mandrill',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/gg@2x.png',
+    name: 'gesagt.getan',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/siili@2x.png',
+    name: 'Siili',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/diamonddogs@2x.png',
+    name: 'the diamond:dogs|group',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/codeschool@2x.png',
+    name: 'codeschool',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/techtrrrs@2x.png',
+    name: 'techtrrrs',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/cws@2x.jpg',
+    name: 'Coworking Salzburg',
+    duration: 10000
+  }, {
+    image: 'https://conc.at/images/logos/fh@2x.jpg',
+    name: 'University of Applied Sciences Salzburg',
+    duration: 10000
   }]
 }

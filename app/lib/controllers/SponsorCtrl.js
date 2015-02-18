@@ -2,7 +2,7 @@
 
 module.exports = function (app) {
   app.controller('SponsorCtrl', function ($scope, $timeout) {
-    var sponsors = $scope.config.sponsors
+    var sponsors = $scope.config.sponsors.sort(Math.random.bind(Math))
 
     function swap () {
       sponsors.unshift(sponsors.pop())

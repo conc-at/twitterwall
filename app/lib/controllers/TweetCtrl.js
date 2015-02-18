@@ -20,8 +20,8 @@ var exports = module.exports = function (app) {
 
       $scope.tweets.unshift(tweet)
 
-      if ($scope.tweets.length > 6) {
-        $scope.tweets = $scope.tweets.slice(0, 6)
+      if ($scope.tweets.length > 10) {
+        $scope.tweets = $scope.tweets.slice(0, 10)
       }
 
       $scope.$apply()

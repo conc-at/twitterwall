@@ -75,10 +75,8 @@ a, a:hover, a:visited, a:active {
 }
 
 .schedule {
-  flex-grow: 1;
-  width: 50%;
+  flex: 2;
   color: #f7f7f7;
-  background-color: fade(#333333, 80%);
   h1 {
     margin: 40px auto;
     font-size: 78px;
@@ -86,33 +84,47 @@ a, a:hover, a:visited, a:active {
   }
 }
 
-.nextup, .general {
+@media (max-width: 850px) {
+  .schedule {
+    display: none;
+  }
+}
+
+.nextup, .general, .sponsor {
   overflow: hidden;
-  height: 50%;
+}
+
+.general, .sponsor {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  background-color: white;
 }
 
 .general {
   h1 {
-    height: 50%;
     margin: 0 auto;
     padding: 40px 0;
   }
 
-  .sponsor {
-    height: 50%;
-    width: 100%;
-    img {
-      display: block;
-      max-height: 100%;
-      max-width: 100%;
-      margin: 0 auto;
-    }
+}
+
+.sponsor {
+  img {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0 auto;
   }
 }
 
 .nextup {
+  height: 60%;
   padding: 20px;
   background-color: fade(#333333, 80%);
+  display: flex;
+  text-align: center;
+  align-items: center;
 
   h2 {
     font-size: 42px;
@@ -122,12 +134,15 @@ a, a:hover, a:visited, a:active {
     font-size: 28px;
     font-weight: normal;
   }
+
+  > div {
+    margin: 0 auto;
+  }
 }
 
 .speakers {
   width: 100%;
   img {
-    float: left;
     display: block;
     margin: 10px 0;
     border-radius: 100%;
@@ -137,7 +152,7 @@ a, a:hover, a:visited, a:active {
   .speaker {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    justify-content: center;
     div {
       font-weight: bold;
       margin-left: 20px;
@@ -148,8 +163,7 @@ a, a:hover, a:visited, a:active {
 
 .tweets {
   overflow: scroll;
-  flex-grow: 1;
-  width: 50%;
+  flex: 3;
   margin: 0;
   padding: 0;
   background-color: fade(#f7f7f7, 80%);
@@ -174,7 +188,7 @@ tweet {
   .info {
     margin-left: 113px;
     padding: 20px;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #333;
   }
 
   .media-img {
