@@ -21,15 +21,14 @@ module.exports = {
     }
   },
   lanyrd: {
-    overwriteDate: '2015-03-07', // for debuging
+    overwriteDate: '2015-03-07', // for debugging
     year: e.LANYRD_YEAR || '2015',
     id: e.LANYRD_ID || 'concat',
-    showNext: 5000,
+    showNext: 15000,
     roomColors: {
-      'Audimax': '#FF3434',
-      '110': '#34FF34',
-      '017': '#3434FF',
-      'Lounge': '#FF34FF'
+      'Audimax': '#c30813',
+      'Room 110': '#169c19',
+      'Lounge': '#c35a18'
     }
   },
   admin: {
