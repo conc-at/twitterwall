@@ -1,0 +1,7 @@
+<span ng-bind-html="flash.message"></span>
+
+<div class="timer" ng-if="flash.duration">
+  <div ng-style="{
+    transition: 'all {{flash.duration}}ms linear'
+  }"></div>
+</div>
