@@ -2,7 +2,6 @@
 
 /* global document */
 
-var angular = require('angular')
 var markdown = require('markdown').markdown
 var twemoji = require('twemoji')
 
@@ -12,7 +11,6 @@ module.exports = function (app) {
       scope: {},
       templateUrl: 'flash.html',
       link: function (scope, element) {
-
         function show () {
           return $animate.addClass(element, 'flash-message')
         }
