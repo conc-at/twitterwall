@@ -84,6 +84,10 @@ module.exports = {
     name: 'codeschool',
     duration: 10000
   }, {
+    image: 'https://conc.at/images/logos/transloadit@2x.png',
+    name: 'Transloadit',
+    duration: 10000
+  }, {
     image: 'https://conc.at/images/logos/techtrrrs@2x.png',
     name: 'techtrrrs',
     duration: 10000
