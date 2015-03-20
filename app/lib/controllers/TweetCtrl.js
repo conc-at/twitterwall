@@ -64,11 +64,13 @@ exports.emojify = function (text, entities) {
 }
 
 exports.normalize = function (blocks, tweet) {
-  if (blocks.blockRetweets && tweet.retweeted_status)
+  if (blocks.blockRetweets && tweet.retweeted_status) {
     return console.log('blocked retweet!')
+  }
 
-  if (blocks.blockPossiblySensitive && tweet.possibly_sensitive)
+  if (blocks.blockPossiblySensitive && tweet.possibly_sensitive) {
     return console.log('blocked possibly sensitive!')
+  }
 
   tweet.user.profile_image_url = exports.avatar(tweet.user.profile_image_url)
   tweet.user.profile_image_url_https = exports.avatar(tweet.user.profile_image_url_https)
