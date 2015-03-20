@@ -1,5 +1,6 @@
 {
   "name": "twitterwall",
+  "private": true,
   "version": "1.0.0",
   "description": ".concat() twitterwall",
   "main": "index.js",
@@ -48,19 +49,20 @@
     "angular-sanitize": "^1.3.13",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.10.0",
-    "browserify": "^7.0.0",
+    "browserify": "^9.0.3",
     "browserify-shim": "^3.8.1",
     "cors": "^2.5.2",
     "debug": "^2.1.0",
     "express": "^4.10.6",
+    "foreman": "^1.2.0",
     "lanyrd": "^0.2.1",
     "less": "^2.1.2",
-    "lodash.omit": "^2.4.1",
+    "lodash.omit": "^3.0.0",
     "markdown": "^0.5.0",
     "moment": "^2.8.3",
     "ng-time-relative": "^0.7.0",
-    "parallizer": "^1.2.1",
-    "randomcolor": "^0.1.1",
+    "parallizer": "^2.0.1",
+    "randomcolor": "^0.2.0",
     "request": "^2.51.0",
     "socket.io": "^1.2.0",
     "socket.io-client": "^1.3.2",
@@ -68,12 +70,11 @@
     "twit": "^1.1.18",
     "twitter-text": "^1.9.4",
     "url-join": "0.0.1",
-    "watch": "^0.13.0",
-    "watchify": "^2.2.1"
+    "watch": "^0.14.0"
   },
   "devDependencies": {
-    "foreman": "^1.2.0",
-    "standard": "*"
+    "standard": "*",
+    "watchify": "^2.2.1"
   },
   "standard": {
     "ignore": [
