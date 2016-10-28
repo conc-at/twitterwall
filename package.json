@@ -49,32 +49,32 @@
     "angular-sanitize": "^1.3.13",
     "basic-auth-connect": "^1.0.0",
     "body-parser": "^1.10.0",
-    "browserify": "^9.0.3",
+    "browserify": "^13.1.1",
     "browserify-shim": "^3.8.1",
     "cors": "^2.5.2",
     "debug": "^2.1.0",
     "express": "^4.10.6",
-    "foreman": "^1.2.0",
+    "foreman": "^2.0.0",
     "lanyrd": "^0.2.1",
     "less": "^2.1.2",
-    "lodash.omit": "^3.0.0",
+    "lodash.omit": "^4.5.0",
     "markdown": "^0.5.0",
     "moment": "^2.8.3",
     "ng-time-relative": "^0.7.0",
     "parallizer": "^2.0.1",
-    "randomcolor": "^0.2.0",
+    "randomcolor": "^0.4.4",
     "request": "^2.51.0",
     "socket.io": "^1.2.0",
     "socket.io-client": "^1.3.2",
-    "twemoji": "^1.2.0",
-    "twit": "^1.1.18",
+    "twemoji": "^2.2.0",
+    "twit": "^2.2.5",
     "twitter-text": "^1.9.4",
-    "url-join": "0.0.1",
-    "watch": "^0.14.0"
+    "url-join": "1.1.0",
+    "watch": "^1.0.1"
   },
   "devDependencies": {
     "standard": "*",
-    "watchify": "^2.2.1"
+    "watchify": "^3.7.0"
   },
   "standard": {
     "ignore": [
