@@ -69,7 +69,7 @@
     "twemoji": "^2.2.0",
     "twit": "^2.2.5",
     "twitter-text": "^1.9.4",
-    "url-join": "1.1.0",
+    "url-join": "2.0.0",
     "watch": "^1.0.1"
   },
   "devDependencies": {
