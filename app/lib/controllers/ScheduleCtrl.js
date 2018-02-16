@@ -1,74 +1,76 @@
-'use strict'
+'use strict';
 
-var randomColor = require('randomcolor')
+var randomColor = require('randomcolor');
 
-module.exports = function (app) {
-  app.controller('ScheduleCtrl', function ($scope, $http, $interval, config) {
-    var today = config.lanyrd.overwriteDate || (new Date()).toISOString().substr(0, 10)
-    var forerun = config.lanyrd.forerun || 1000 * 60 * 60
-    var roomColors = config.lanyrd.roomColors
+module.exports = function(app) {
+  app.controller('ScheduleCtrl', function($scope, $http, $interval, config) {
+    var today =
+      config.tschuad.overwriteDate || new Date().toISOString().substr(0, 10);
+    var forerun = config.tschuad.forerun || 1000 * 60 * 60;
+    var roomColors = config.tschuad.roomColors;
 
-    $scope.eventdayify = function (input) {
-      var now = new Date()
-      var date = new Date(input)
-      date.setFullYear(now.getFullYear())
-      date.setMonth(now.getMonth())
-      date.setDate(now.getDate())
-      return date.toISOString()
-    }
+    $scope.eventdayify = function(input) {
+      var now = new Date();
+      var date = new Date(input);
+      date.setFullYear(now.getFullYear());
+      date.setMonth(now.getMonth());
+      date.setDate(now.getDate());
+      return date.toISOString();
+    };
 
-    $http.get('/schedule').then(function (res) {
-      var roomData = {}
-      Object.keys(res.data).forEach(function (room) {
-        Object.keys(res.data[room]).forEach(function (date) {
+    $http.get('/schedule').then(function(res) {
+      var roomData = {};
+      Object.keys(res.data).forEach(function(room) {
+        Object.keys(res.data[room]).forEach(function(date) {
           if (date === today) {
-            roomData[room] = res.data[room][date]
-            if (!roomColors[room]) roomColors[room] = randomColor()
+            roomData[room] = res.data[room][date];
+            if (!roomColors[room]) roomColors[room] = randomColor();
           }
-        })
-      })
+        });
+      });
 
-      setCurrentTalk(roomData)
-      $interval(setCurrentTalk.bind(null, roomData), config.lanyrd.showNext)
-    })
+      setCurrentTalk(roomData);
+      $interval(setCurrentTalk.bind(null, roomData), config.tschuad.showNext);
+    });
 
-    var currentIndex = 0
-    function setCurrentTalk (roomData) {
-      var nextTalks = getNextTalks(roomData)
+    var currentIndex = 0;
+    function setCurrentTalk(roomData) {
+      var nextTalks = getNextTalks(roomData);
       if (nextTalks[currentIndex]) {
-        $scope.nextUp = nextTalks[currentIndex]
-        currentIndex++
-        return
+        $scope.nextUp = nextTalks[currentIndex];
+        currentIndex++;
+        return;
       }
 
-      if (nextTalks[0]) $scope.nextUp = nextTalks[0]
-      currentIndex = 1
+      if (nextTalks[0]) $scope.nextUp = nextTalks[0];
+      currentIndex = 1;
     }
 
-    function getNextTalks (roomData) {
-      var nextTalks = []
-      var time = new Date()
-      var now = new Date(today)
-      now.setHours(time.getHours())
-      now.setMinutes(time.getMinutes())
+    function getNextTalks(roomData) {
+      var nextTalks = [];
+      var time = config.overwriteTime
+        ? new Date(config.overwriteTime)
+        : new Date();
+      var now = new Date(today);
+      now.setHours(time.getHours());
+      now.setMinutes(time.getMinutes());
 
-      Object.keys(roomData).forEach(function (room) {
-        roomData[room].some(function (talk) {
-          var time = new Date(talk.start_time)
+      Object.keys(roomData).forEach(function(room) {
+        roomData[room].some(function(talk) {
+          var time = new Date(talk.start_time);
 
-          var diff = time - now
+          var diff = time - now;
 
-          if (diff < 0 || diff > forerun) return false
-
+          if (diff < 0 || diff > forerun) return false;
           talk.style = {
-            spacename: {color: roomColors[room]}
-          }
+            room: { color: roomColors[room] }
+          };
 
-          nextTalks.push(talk)
-          return true
-        })
-      })
-      return nextTalks
+          nextTalks.push(talk);
+          return true;
+        });
+      });
+      return nextTalks;
     }
-  })
-}
+  });
+};

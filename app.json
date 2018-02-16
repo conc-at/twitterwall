@@ -31,11 +31,11 @@
     "CONSUMER_SECRET": {
       "description": "See ACCESS_TOKEN"
      },
-    "LANYRD_YEAR": {
-      "description": "Go to your lanyrd event page and enter the year that is in the URL"
+    "TSCHUAD_YEAR": {
+      "description": "Go to your tschuad event page and enter the year that is in the URL"
      },
-    "LANYRD_ID": {
-      "description": "Go to your lanyrd event page and enter the event name/id that is in the URL"
+    "TSCHUAD_ID": {
+      "description": "Go to your tschuad event page and enter the event name/id that is in the URL"
      },
     "ADMIN_USER": {
       "description": "A username for the admin API used by https://github.com/conc-at/twitterwall-cli",

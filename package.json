@@ -14,6 +14,8 @@
     "build-js": "browserify app/index.js > build/bundle.js",
     "clean": "rm -rf build && mkdir build",
     "copy": "cp -r app/images build",
+    "lint": "eslint -c .eslintrc ./app",
+    "lint:fix": "eslint --fix -c .eslintrc ./app",
     "watch-css": "watch 'npm run build-css' app/styles",
     "watch-html": "watch 'npm run build-html' app/templates",
     "watch-js": "watchify app/index.js -o build/bundle.js -dv",
@@ -59,8 +61,9 @@
     "less": "^3.0.1",
     "lodash.omit": "^4.5.0",
     "markdown": "^0.5.0",
-    "moment": "^2.8.3",
+    "moment": "^2.20.1",
     "ng-time-relative": "^0.7.0",
+    "node-fetch": "^2.0.0",
     "parallizer": "^2.0.1",
     "randomcolor": "^0.5.0",
     "request": "^2.51.0",
@@ -73,6 +76,9 @@
     "watch": "^1.0.1"
   },
   "devDependencies": {
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.10.2",
     "standard": "*",
     "watchify": "^3.7.0"
   },

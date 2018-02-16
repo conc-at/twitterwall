@@ -1,16 +1,17 @@
-'use strict'
+'use strict';
 
 /*jshint camelcase: false */
 
-var e = process.env
+var e = process.env;
 
 module.exports = {
-  title: e.TITLE || '.concat() 2015 Twitterwall',
-  hashtag: e.HASHTAG || '#concat15',
+  title: e.TITLE || '.concat() 2018 Twitterwall',
+  hashtag: e.HASHTAG || '#concat18',
   port: e.PORT || 8000,
+  //overwriteTime: '2018-03-03T08:00:00+01:00', // for debugging
   twitter: {
     throttle: 1000,
-    tracks: (e.HASHTAGS || '#concat,#concat15,#concat2015').split(','),
+    tracks: (e.HASHTAGS || '#concat,#concat18,#concat2018').split(','),
     users: (e.USERS || 'conc_at').split(','),
     tweetHistory: true,
     auth: {
@@ -20,15 +21,14 @@ module.exports = {
       consumer_secret: e.CONSUMER_SECRET
     }
   },
-  lanyrd: {
-    overwriteDate: '2015-03-07', // for debugging
-    year: e.LANYRD_YEAR || '2015',
-    id: e.LANYRD_ID || 'concat',
+  tschuad: {
+    overwriteDate: '2018-03-03', // for debugging
+    id: e.TSCHUAD_ID || 1,
     showNext: 15000,
     roomColors: {
-      'Audimax': '#c30813',
-      'Room 110': '#169c19',
-      'Lounge': '#c35a18'
+      Audimax: '#E40138',
+      HS110: '#1DA4C1',
+      Foyer: '#FDB906'
     }
   },
   admin: {
@@ -39,65 +39,96 @@ module.exports = {
     blockRetweets: true,
     blockPossiblySensitive: true
   },
-  sponsors: [{
-    image: 'https://conc.at/images/logos/zalando@2x.png',
-    name: 'Zalando Technology',
-    duration: 20000
-  }, {
-    image: 'https://conc.at/images/logos/pusher@2x.png',
-    name: 'Pusher',
-    duration: 20000
-  }, {
-    image: 'https://conc.at/images/logos/braintree@2x.png',
-    name: 'Braintree Payments',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/aws@2x.png',
-    name: 'Amazon Web Services',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/travis@2x.png',
-    name: 'Travis CI',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/hoodie@2x.png',
-    name: 'Hoodie',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/mandrill@2x.png',
-    name: 'Mandrill',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/gg@2x.png',
-    name: 'gesagt.getan',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/siili@2x.png',
-    name: 'Siili',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/diamonddogs@2x.png',
-    name: 'the diamond:dogs|group',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/codeschool@2x.png',
-    name: 'codeschool',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/transloadit@2x.png',
-    name: 'Transloadit',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/techtrrrs@2x.png',
-    name: 'techtrrrs',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/cws@2x.jpg',
-    name: 'Coworking Salzburg',
-    duration: 10000
-  }, {
-    image: 'https://conc.at/images/logos/fh@2x.jpg',
-    name: 'University of Applied Sciences Salzburg',
-    duration: 10000
-  }]
-}
+  sponsors: [
+    {
+      image: 'https://2018.conc.at/images/logos/namics@2x.jpg',
+      name: 'Namics',
+      duration: 20000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/pixelart@2x.jpg',
+      name: 'Pixelart',
+      duration: 20000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/fh@2x.jpg',
+      name: 'FH Salzburg',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/poi@2x.jpg',
+      name: 'Porsche Informatik',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/google@2x.jpg',
+      name: 'Google',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/aws@2x.jpg',
+      name: 'AWS',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/mozilla@2x.jpg',
+      name: 'Mozilla',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/automattic@2x.jpg',
+      name: 'Automattic',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/beenergised@2x.jpg',
+      name: 'be.energised',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/stickeryou@2x.jpg',
+      name: 'Sticker You',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/dna@2x.jpg',
+      name: 'Die Netzarchitekten',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/jetbrains@2x.jpg',
+      name: 'Jetbrains',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/kat@2x.jpg',
+      name: 'karriere.at',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/elements@2x.jpg',
+      name: 'elements',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/findologic@2x.jpg',
+      name: 'Findologic',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/manner@2x.jpg',
+      name: 'Manner',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/makava@2x.jpg',
+      name: 'Makava',
+      duration: 10000
+    },
+    {
+      image: 'https://2018.conc.at/images/logos/gesagt.getan@2x.jpg',
+      name: 'gesagt.getan',
+      duration: 10000
+    }
+  ]
+};

@@ -15,16 +15,18 @@
       </div>
       <div class="nextup">
         <div ng-if="nextUp">
-          <h2>{{nextUp.title}}</h2>
+          <h2>{{nextUp.name}}</h2>
+          <!--
           <div class="speakers">
             <div class="speaker" ng-repeat="speaker in nextUp.speakers">
               <img ng-src="{{speaker.image}}">
               <div>{{speaker.title}}</div>
             </div>
           </div>
+          -->
           <h3>
             <time relative datetime="{{eventdayify(nextUp.start_time)}}"></time>
-            in the <strong ng-style="nextUp.style.spacename">{{nextUp.space_name}}</strong>
+            in the <strong ng-style="nextUp.style.room">{{nextUp.room}}</strong>
             <br>
             <span>{{eventdayify(nextUp.start_time) | date:'shortTime'}}</span>
           </h3>
