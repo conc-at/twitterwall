@@ -31,9 +31,6 @@
     "CONSUMER_SECRET": {
       "description": "See ACCESS_TOKEN"
      },
-    "TSCHUAD_YEAR": {
-      "description": "Go to your tschuad event page and enter the year that is in the URL"
-     },
     "TSCHUAD_ID": {
       "description": "Go to your tschuad event page and enter the event name/id that is in the URL"
      },
