@@ -1,0 +1,7 @@
+.editorconfig
+.eslintrc
+.nvmrc
+.prettierrc
+.travis.yml
+build
+node_modules
