@@ -3,7 +3,7 @@
 set -e
 function cleanup {
   echo "Killing watch tasks"
-  npm run kill-dev
+  #npm run kill-dev
 }
 trap cleanup EXIT
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-npm run kill-dev
+#npm run kill-dev
 npm run build
 
 # browser-sync start --files "./build/*" --proxy localhost:5000 &

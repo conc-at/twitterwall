@@ -8,7 +8,7 @@ module.exports = {
   title: e.TITLE || '.concat() 2018 Twitterwall',
   hashtag: e.HASHTAG || '#concat18',
   port: e.PORT || 8000,
-  //overwriteTime: '2018-03-03T08:00:00+01:00', // for debugging
+  //overwriteTime: '2018-03-03T14:30:00+01:00', // for debugging
   twitter: {
     throttle: 1000,
     tracks: (e.HASHTAGS || '#concat,#concat18,#concat2018').split(','),
@@ -26,9 +26,10 @@ module.exports = {
     id: e.TSCHUAD_ID || 1,
     showNext: 15000,
     roomColors: {
-      Audimax: '#E40138',
-      HS110: '#1DA4C1',
-      Foyer: '#FDB906'
+      'Namics Track': '#E40138',
+      'Cube Track': '#1DA4C1',
+      'Hallway': '#FDB906',
+      'Relax Area': '#FDB906'
     }
   },
   admin: {

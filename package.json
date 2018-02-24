@@ -30,7 +30,11 @@
     "type": "git",
     "url": "https://github.com/conc-at/twitterwall.git"
   },
-  "keywords": ["twitter", "tweet", "twitterwall"],
+  "keywords": [
+    "twitter",
+    "tweet",
+    "twitterwall"
+  ],
   "author": "",
   "contributors": [
     "Stephan Bönnemann <stephan@boennemann.me>",
@@ -79,7 +83,9 @@
     "watchify": "^3.7.0"
   },
   "standard": {
-    "ignore": ["build/**"]
+    "ignore": [
+      "build/**"
+    ]
   },
   "browser": {
     "angular": "./node_modules/angular/angular.js",
@@ -89,13 +95,19 @@
   "browserify-shim": {
     "angular": "angular",
     "angular-sanitize": {
-      "depends": ["angular"]
+      "depends": [
+        "angular"
+      ]
     },
     "angular-animate": {
-      "depends": ["angular"]
+      "depends": [
+        "angular"
+      ]
     }
   },
   "browserify": {
-    "transform": ["browserify-shim"]
+    "transform": [
+      "browserify-shim"
+    ]
   }
 }
