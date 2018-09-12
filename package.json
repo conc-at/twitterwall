@@ -52,7 +52,7 @@
     "browserify": "^16.1.0",
     "browserify-shim": "^3.8.1",
     "cors": "^2.5.2",
-    "debug": "^3.0.0",
+    "debug": "^4.0.1",
     "express": "^4.10.6",
     "foreman": "^2.0.0",
     "lanyrd": "^0.3.0",
