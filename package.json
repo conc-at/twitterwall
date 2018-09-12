@@ -54,7 +54,7 @@
     "cors": "^2.5.2",
     "debug": "^4.0.1",
     "express": "^4.10.6",
-    "foreman": "^2.0.0",
+    "foreman": "^3.0.1",
     "lanyrd": "^0.3.0",
     "less": "^3.0.1",
     "lodash.omit": "^4.5.0",
